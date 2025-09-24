@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>RedesCreation — Freelance Photographer in Banguluru</title>
+  <meta name="description" content="RedesCreation — Freelance Photographer based in Banguluru. Professional wedding, portrait, event and commercial photography. Capturing moments with creativity and care." />
+  <meta name="author" content="RedesCreation" />
+  <link rel="canonical" href="https://www.redescreation.in" />
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — VisionFrames Photography (Bengaluru)</title>
+  <meta name="description" content="Portfolio — VisionFrames Photography. Filterable gallery, case studies, lightbox and high-performance animations for desktop & mobile." />
+  <meta name="author" content="VisionFrames" /> -->
+  <!-- Tailwind CDN -->
+  <!-- Tailwind CDN for quick prototyping -->
+   <script>
+    // Custom Tailwind config: add max-w-6x1 and brand colors
+    tailwind = {
+      config: { 
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: '#F6EDE9',
+                DEFAULT: '#C88C6A',
+                dark: '#8F5A3F'
+              },
+            },
+            fontFamily: {
+              heading: ['Georgia', 'Times New Roman', 'serif'],
+              body: ['Inter', 'system-ui', 'sans-serif']
+            },
+            spacing: {
+              '18': '4.5rem',
+              '22': '5.5rem'
+            },
+            maxWidth: {
+              '6x1': '1200px' /* user requested 'max-w-6x1' */
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons (Heroicons CDN) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <script>
+    tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#fff8f5',
+                100: '#fdeee5',
+                200: '#fbd6c3',
+                300: '#f5bba0',
+                400: '#ef927a',
+                DEFAULT: '#dd6f4a',
+                700: '#a94a2e'
+              }
+            },
+            fontFamily: {
+              heading: ['Playfair Display', 'serif'],
+              body: ['Inter', 'sans-serif']
+            },
+            maxWidth: {
+              '6x1': '1200px'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --brand: #dd6f4a;
+      --brand-dark: #a94a2e;
+      --muted: #6b7280;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#fff 0%, #fffbf8 100%);
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+
+    h1,h2,h3,h4 {
+      font-family: "Playfair Display", serif;
+    }
+
+    /* Reading progress bar at top */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-dark));
+      width: 0%;
+      z-index: 80;
+      transition: width .15s linear;
+    }
+
+    /* hero mask */
+    .hero-mask {
+      background-blend-mode: overlay;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle card hover */
+    .card-hover {
+      transition: box-shadow .35s ease, transform .35s cubic-bezier(.2,.9,.2,1);
+      will-change: transform;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 50px rgba(2,6,23,0.08);
+    }
+
+    /* tag pill */
+    .tag-pill {
+      display: inline-block;
+      background: rgba(221,111,74,0.08);
+      color: var(--brand-dark);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: .78rem;
+      border: 1px solid rgba(221,111,74,0.06);
+    }
+
+    /* marquee */
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee .inner {
+      display: inline-block;
+      animation: marq 22s linear infinite;
+    }
+    @keyframes marq {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* modal base */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+    }
+    .modal.show {
+      display: flex;
+    }
+
+    /* accessibility focus */
+    :focus {
+      outline: 3px solid rgba(221,111,74,0.12);
+      outline-offset: 3px;
+    }
+
+    /* utility tweaks for hero shapes */
+    .wavy {
+      transform: translateZ(0);
+    }
+
+    /* ensure images don't exceed container */
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Add extra whitespace lines intentionally below to meet user length requirement */
+  </style>
+</head>
+<body>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-40 bg-white backdrop-blur border-b border-gray-100"></header>
+    <div class="mx-auto px-6 max-w-6x1 flex items-center justify-between h-20">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-3" aria-label="RedesCreation home">
+          <!-- Logo: simple text + mark -->
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold shadow">
+            RC
+          </div>
+          <div class="leading-tight">
+            <span class="block text-sm font-medium">RedesCreation</span>
+            <span class="block text-xs text-gray-500">Freelance Photographer</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+        <a href="index.html" class="text-sm hover:text-brand.DEFAULT">Home</a>
+        <a href="services.html" class="text-sm hover:text-brand.DEFAULT">Services</a>
+        <a href="portfolio.html" class="text-sm hover:text-brand.DEFAULT">Portfolio</a>
+        <a href="about.html".html" class="text-sm hover:text-brand.DEFAULT">About</a>
+        <a href="blog.html" class="text-sm hover:text-brand.DEFAULT">Blog</a>
+        <a href="contact.html" class="text-sm hover:text-brand.DEFAULT">Contact</a>
+        <button id="searchToggle" class="ml-6 text-sm px-3 py-2 rounded hover:bg-gray-50" aria-label="Open search">
+          <i data-feather="search" class="inline-block" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="contact.html" class="text-sm px-4 py-2 border border-brand-DEFAULT rounded text-brand-DEFAULT hover:bg-brand-DEFAULT hover:text-white transition">Book Now</a>
+      </div>
+
+      <!-- Mobile controls -->
+      <div class="md:hidden flex items-center gap-3">
+        <button id="mobileSearchBtn" aria-label="Search" class="p-2">
+          <i data-feather="search"></i>
+        </button>
+        <button id="hamburger" aria-label="Open menu" class="p-2">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile slide-out menu -->
+    <div id="mobileMenu" class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform translate-x-full transition-transform z-50" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="p-6 flex items-center justify-between border-b">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold">RC</div>
+          <div>
+            <div class="text-sm font-medium">RedesCreation</div>
+            <div class="text-xs text-gray-500">Photographer — Banguluru</div>
+          </div>
+        </div>
+        <button id="mobileClose" aria-label="Close menu" class="p-2">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4">  
+        <a href="index.html" class="block text-lg">Home</a>
+        <a href="services.html" class="block text-lg">Services</a>
+        <a href="portfolio.html" class="block text-lg">Portfolio</a>
+        <a href="ab'.html" class="block text-lg">About</a>
+        <a href="blog.html" class="block text-lg">Blog</a>
+        <a href="contact.html" class="block text-lg">Contact</a>
+
+        <div class="pt-4 border-t">
+          <form role="search" aria-label="Mobile search">
+            <input class="w-full p-2 border rounded" placeholder="Search..." />
+          </form>
+          <div class="flex gap-3 mt-4">
+            <a href="#" aria-label="Instagram" class="p-2 rounded hover:bg-gray-50"><i data-feather="instagram"></i></a>
+            <a href="#" aria-label="Facebook" class="p-2 rounded hover:bg-gray-50"><i data-feather="facebook"></i></a>
+            <a href="#" aria-label="Twitter" class="p-2 rounded hover:bg-gray-50"><i data-feather="twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header> 
+
+  <!-- BLOG PAGE HERO SECTION (New Design) -->
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0">
+    <img 
+      src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" 
+      alt="Camera Lens Closeup" 
+      class="w-full h-full object-cover scale-105 animate-[pulse_10s_ease-in-out_infinite]"
+    >
+    <div class="absolute inset-0 bg-black/50"></div>
+  </div>
+
+  <!-- Foreground Content -->
+  <div class="relative z-10 text-center text-white px-6 fade-in">
+    <span class="uppercase tracking-widest text-sm md:text-base bg-white/20 backdrop-blur-md px-4 py-1 rounded-full inline-block mb-4">
+      From the Lens
+    </span>
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">
+      Behind Every Picture <br class="hidden md:block"> Lies a Story
+    </h1>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-gray-200">
+      Explore articles, behind-the-scenes insights, and expert tips to make your moments unforgettable.
+    </p>
+
+    <!-- Search Bar -->
+    <div class="max-w-lg mx-auto flex items-center bg-white/90 rounded-full overflow-hidden shadow-lg">
+      <input 
+        type="text" 
+        placeholder="Search blog posts..." 
+        class="flex-1 p-3 text-gray-700 focus:outline-none bg-transparent"
+      >
+      <button class="bg-black hover:bg-gray-800 text-white px-6 py-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Animated Decorative Elements -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white cursor-pointer" id="scrollDownBtn">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+</section>
+
+      <!-- decorative wave -->
+      <svg viewBox="0 0 100 20" preserveAspectRatio="none" class="absolute bottom-0 left-0 w-full h-12 wavy"><path d="M0 0 L100 0 L100 15 Q50 25 0 15 Z" fill="#fff"></path></svg>
+    </section>
+
+    <!-- ARTICLES GRID + SIDEBAR -->
+    <section class="py-16">
+      <div class="max-w-6x1 mx-auto px-6 grid lg:grid-cols-4 gap-10">
+
+        <!-- MAIN ARTICLES -->
+        <div class="lg:col-span-3">
+
+          <!-- Search & Filters -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <form id="searchForm" class="flex items-center gap-3 w-full sm:w-auto" role="search" aria-label="Search articles">
+              <label for="q" class="sr-only">Search</label>
+              <input id="q" name="q" type="search" placeholder="Search articles" class="w-full sm:w-80 p-3 border rounded-lg" />
+              <button type="submit" class="px-4 py-2 bg-brand text-white rounded-lg">Search</button>
+            </form>
+
+            <div class="flex items-center gap-3">
+              <div class="text-sm text-gray-500">Sort</div>
+              <select id="sort" class="p-2 border rounded">
+                <option value="new">Newest</option>
+                <option value="popular">Most popular</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Posts list -->
+          <div id="postsList" class="grid md:grid-cols-2 gap-8">
+
+            <!-- Post Item (repeatable) -->
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm group card-hover" tabindex="0" role="article" aria-labelledby="post1-title" data-tags="tips,golden-hour" data-date="2025-03-12">
+              <div class="h-56 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4a3d1e8f8f3e2b8a1cb1a2b5c6d7e8" alt="Golden hour couple" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="tag-pill">Tips</div>
+                  <div class="text-xs text-gray-500">March 12, 2025 • 5 min read</div>
+                </div>
+                <h3 id="post1-title" class="text-xl font-semibold">5 Tips for Natural Light Wedding Photos</h3>
+                <p class="mt-2 text-gray-600">How to make the most of golden hour and diffuse light to create soft, romantic portraits.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <a href="#single" class="text-brand font-medium read-link" data-post="1">Read article →</a>
+                  <div class="text-sm text-gray-400">❤ 124</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm group card-hover" tabindex="0" role="article" aria-labelledby="post2-title" data-tags="portraits,posing" data-date="2025-02-02">
+              <div class="h-56 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b8c1f4c3a4d5e6f7a8b9c0d1e2f3a4b" alt="portrait posing" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="tag-pill">Portraits</div>
+                  <div class="text-xs text-gray-500">Feb 02, 2025 • 4 min read</div>
+                </div>
+                <h3 id="post2-title" class="text-xl font-semibold">Posing Tips That Put Subjects at Ease</h3>
+                <p class="mt-2 text-gray-600">Simple directions and warm-up exercises to make your portrait subjects comfortable in front of the camera.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <a href="#single" class="text-brand font-medium read-link" data-post="2">Read article →</a>
+                  <div class="text-sm text-gray-400">❤ 98</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm group card-hover" tabindex="0" role="article" aria-labelledby="post3-title" data-tags="gear,workflow" data-date="2025-01-20">
+              <div class="h-56 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b1d2c1f2b2c3d4e5f6g7" alt="camera gear" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="tag-pill">Gear</div>
+                  <div class="text-xs text-gray-500">Jan 20, 2025 • 3 min read</div>
+                </div>
+                <h3 id="post3-title" class="text-xl font-semibold">Essential Gear for Every Shoot</h3>
+                <p class="mt-2 text-gray-600">From lenses to lighting — what we bring to ensure consistent results on every job.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <a href="#single" class="text-brand font-medium read-link" data-post="3">Read article →</a>
+                  <div class="text-sm text-gray-400">❤ 77</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Post 4 -->
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm group card-hover" tabindex="0" role="article" aria-labelledby="post4-title" data-tags="portraits,location" data-date="2024-12-15">
+              <div class="h-56 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9b12e5a4a2b2b9d6f9e6d4b4b2c1a1a5" alt="outdoor portrait" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="tag-pill">Portraits</div>
+                  <div class="text-xs text-gray-500">Dec 15, 2024 • 6 min read</div>
+                </div>
+                <h3 id="post4-title" class="text-xl font-semibold">Shooting Portraits on Location</h3>
+                <p class="mt-2 text-gray-600">How to scout, prepare and shoot environmental portraits that feel cinematic and authentic.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <a href="#single" class="text-brand font-medium read-link" data-post="4">Read article →</a>
+                  <div class="text-sm text-gray-400">❤ 54</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Post 5 -->
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm group card-hover" tabindex="0" role="article" aria-labelledby="post5-title" data-tags="events" data-date="2024-11-10">
+              <div class="h-56 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d5f0f9dea6a0bbc8326b66a2d6aa1b4" alt="event photography" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="tag-pill">Events</div>
+                  <div class="text-xs text-gray-500">Nov 10, 2024 • 4 min read</div>
+                </div>
+                <h3 id="post5-title" class="text-xl font-semibold">How to Photograph Live Events</h3>
+                <p class="mt-2 text-gray-600">Tips for shooting fast-paced events with confidence and clarity.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <a href="#single" class="text-brand font-medium read-link" data-post="5">Read article →</a>
+                  <div class="text-sm text-gray-400">❤ 43</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Post 6 -->
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm group card-hover" tabindex="0" role="article" aria-labelledby="post6-title" data-tags="editing,color" data-date="2024-10-05">
+              <div class="h-56 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4a3d1e8f8f3e2b8a1cb1a2b5c6d7e8" alt="editing workflow" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="tag-pill">Editing</div>
+                  <div class="text-xs text-gray-500">Oct 05, 2024 • 7 min read</div>
+                </div>
+                <h3 id="post6-title" class="text-xl font-semibold">Color Grading for Consistency</h3>
+                <p class="mt-2 text-gray-600">A workflow for consistent color grading across a multi-day event or a commercial shoot.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <a href="#single" class="text-brand font-medium read-link" data-post="6">Read article →</a>
+                  <div class="text-sm text-gray-400">❤ 31</div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Additional placeholder posts to grow list -->
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm group card-hover" tabindex="0" role="article" aria-labelledby="post7-title" data-tags="business" data-date="2024-09-01">
+              <div class="h-56 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0e2f4f752c8b9f2e7c1fdfb19b2efb8b" alt="business" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="tag-pill">Business</div>
+                  <div class="text-xs text-gray-500">Sep 01, 2024 • 5 min read</div>
+                </div>
+                <h3 id="post7-title" class="text-xl font-semibold">Growing a Photography Business</h3>
+                <p class="mt-2 text-gray-600">How to price, package and pitch your work — practical steps for sustainable growth.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <a href="#single" class="text-brand font-medium read-link" data-post="7">Read article →</a>
+                  <div class="text-sm text-gray-400">❤ 28</div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Pagination -->
+          <div class="mt-12 flex items-center justify-center gap-3">
+            <button class="ghost-btn pagination-btn px-4 py-2 rounded">← Prev</button>
+            <button class="ghost-btn pagination-btn px-4 py-2 rounded">1</button>
+            <button class="ghost-btn pagination-btn px-4 py-2 rounded">2</button>
+            <button class="ghost-btn pagination-btn px-4 py-2 rounded">3</button>
+            <button class="ghost-btn pagination-btn px-4 py-2 rounded">Next →</button>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="lg:col-span-1">
+          <div class="bg-white rounded-2xl p-6 shadow-sm sticky top-28">
+            <h4 class="font-semibold">Subscribe</h4>
+            <p class="text-sm text-gray-600 mt-2">Get posts, tips and news in your inbox.</p>
+            <form id="subscribeForm" class="mt-4 flex gap-2" aria-label="Subscribe form">
+              <input name="email" type="email" placeholder="Email address" required class="flex-1 p-2 border rounded" />
+              <button class="px-4 py-2 bg-brand text-white rounded">Subscribe</button>
+            </form>
+            <div id="subscribeStatus" class="text-sm text-green-600 mt-3 hidden">Thanks! Check your email for confirmation.</div>
+          </div>
+
+          <div class="mt-6 bg-white rounded-2xl p-6 shadow-sm">
+            <h4 class="font-semibold">Categories</h4>
+            <ul class="mt-3 space-y-2 text-sm text-gray-600">
+              <li><a href="#" class="category-link" data-cat="tips">Tips & Tutorials</a></li>
+              <li><a href="#" class="category-link" data-cat="bts">Behind the Scenes</a></li>
+              <li><a href="#" class="category-link" data-cat="portfolio">Portfolio Highlights</a></li>
+              <li><a href="#" class="category-link" data-cat="gear">Gear & Workflow</a></li>
+            </ul>
+          </div>
+
+          <div class="mt-6 bg-white rounded-2xl p-6 shadow-sm">
+            <h4 class="font-semibold">Popular Posts</h4>
+            <ul class="mt-3 space-y-3">
+              <li class="flex items-start gap-3">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f3e1a2f24eaa9c94f7bbf6b6f6f6f4e" class="w-12 h-12 object-cover rounded" alt="popular1" />
+                <div class="text-sm"><a href="#" class="popular-link" data-post="1">5 Tips for Golden Hour</a><div class="text-xs text-gray-500">Mar 12, 2025</div></div>
+              </li>
+              <li class="flex items-start gap-3">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0b3c7c1a1d2f9430b7a8c7f2b8a0aabc" class="w-12 h-12 object-cover rounded" alt="popular2" />
+                <div class="text-sm"><a href="#" class="popular-link" data-post="2">Portrait Posing Basics</a><div class="text-xs text-gray-500">Feb 02, 2025</div></div>
+              </li>
+              <li class="flex items-start gap-3">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b8c1f4c3a4d5e6f7a8b9c0d1e2f3a4b" class="w-12 h-12 object-cover rounded" alt="popular3" />
+                <div class="text-sm"><a href="#" class="popular-link" data-post="3">Essential Gear Checklist</a><div class="text-xs text-gray-500">Jan 20, 2025</div></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-6 bg-white rounded-2xl p-6 shadow-sm">
+            <h4 class="font-semibold">Tags</h4>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="tag-pill tag-filter" data-tag="wedding">wedding</button>
+              <button class="tag-pill tag-filter" data-tag="portraits">portraits</button>
+              <button class="tag-pill tag-filter" data-tag="lighting">lighting</button>
+              <button class="tag-pill tag-filter" data-tag="editing">editing</button>
+              <button class="tag-pill tag-filter" data-tag="gear">gear</button>
+              <button class="tag-pill tag-filter" data-tag="business">business</button>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ARTICLE TEMPLATE (hidden) -->
+    <section id="single" class="max-w-6x1 mx-auto px-6 py-16 hidden">
+      <article class="article-body max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow">
+        <header>
+          <div class="text-xs text-gray-500" id="single-meta">March 12, 2025 • 5 min read</div>
+          <h1 class="text-3xl font-heading font-bold mt-2" id="single-title">Article Title</h1>
+          <div class="mt-4 text-sm text-gray-600" id="single-author">By VisionFrames</div>
+        </header>
+
+        <figure class="mt-6">
+          <img id="single-image" src="" alt="article image" />
+          <figcaption id="single-caption" class="text-xs text-gray-500 mt-2">Image caption</figcaption>
+        </figure>
+
+        <div class="mt-6 space-y-4 text-gray-700" id="single-body">
+          <p>Article body will be injected here when a post is opened for reading. This template demonstrates structure for a single article page inside the blog listing demo.</p>
+        </div>
+
+        <footer class="mt-8 flex items-center justify-between">
+          <div class="text-sm text-gray-500">Share</div>
+          <div class="flex items-center gap-3 text-sm text-gray-600">❤ <span id="single-likes">0</span> • <button class="ghost-btn">Comment</button></div>
+        </footer>
+      </article>
+    </section>
+
+    <!-- CTA / Newsletter -->
+    <section class="py-16 bg-gradient-to-r from-white to-[#fff6f1]">
+      <div class="max-w-6x1 mx-auto px-6 text-center">
+        <h2 class="text-3xl font-heading font-bold">Join the mailing list</h2>
+        <p class="mt-2 text-gray-600">Monthly tips, BTS stories and exclusive offers for subscribers.</p>
+        <form id="newsletterForm" class="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center" aria-label="Newsletter form">
+          <input name="email" type="email" placeholder="Your email" required class="p-3 border rounded w-full sm:w-auto" />
+          <button class="px-6 py-3 bg-brand text-white rounded">Subscribe</button>
+        </form>
+        <div id="newsletterStatus" class="text-sm text-green-600 mt-3 hidden">Thanks for subscribing!</div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+  <footer class="bg-white border-t border-gray-100 py-12">
+    <div class="mx-auto max-w-6x1 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-brand-DEFAULT text-white flex items-center justify-center font-semibold">RC</div>
+          <div>
+            <div class="font-semibold">RedesCreation</div>
+            <div class="text-sm text-gray-500">Freelance Photographer — Banguluru</div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-gray-600">Capturing moments with creativity and care. Contact for bookings and commercial enquiries.</p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Services</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="services.html">Weddings</a></li>
+          <li><a href="services.html">Portraits</a></li>
+          <li><a href="services.html">Events</a></li>
+          <li><a href="services.html">Commercial</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Resources</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Contact</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li>Phone: +91 96766 59153</li>
+          <li>Email: <a href="mailto:info@redescreation.in" class="hover:underline">info@redescreation.in</a></li>
+          <li>Website: <a href="https://www.redescreation.in" class="hover:underline">www.redescreation.in</a></li>
+        </ul>
+
+        <div class="mt-4 flex gap-3">
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Instagram"><i data-feather="instagram"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Facebook"><i data-feather="facebook"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t pt-6 text-center text-sm text-gray-500">
+      © <span id="year"></span> RedesCreation — All rights reserved.
+    </div>
+  </footer>
+
+  </main>
+
+  <!-- MODALS & SHEETS: Search Modal -->
+  <div id="searchModal" class="modal" aria-hidden="true" role="dialog" aria-label="Search">
+    <div class="bg-white rounded-xl p-6 max-w-2xl w-full">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-semibold">Search the Journal</h3>
+        <button id="closeSearch" class="text-gray-600">✕</button>
+      </div>
+      <form id="searchModalForm" class="mt-4 flex gap-3">
+        <input name="q" placeholder="Search posts, tags, topics..." class="flex-1 p-3 border rounded" />
+        <button class="px-4 py-2 bg-brand text-white rounded">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIMPLE LIGHTWEIGHT SCRIPTS FOR INTERACTION -->
+  <script>
+    // Initialize feather icons
+    feather.replace();
+
+    // Simple fade-in on scroll for elements with class fade-in-up / slide-left
+    (function() {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      document.querySelectorAll('.fade-in-up, .slide-left').forEach(el => io.observe(el));
+    })();
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(0)';
+      mobileMenu.setAttribute('aria-hidden','false');
+    });
+    mobileClose.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(100%)';
+      mobileMenu.setAttribute('aria-hidden','true');
+    });
+
+  // Smooth scroll to blog list when clicking arrow
+  document.getElementById('scrollDownBtn').addEventListener('click', () => {
+    const nextSection = document.querySelector('#blogListSection');
+    if(nextSection){
+      nextSection.scrollIntoView({behavior: 'smooth'});
+    }
+  });
+
+  // GSAP Hero Animation
+  gsap.from('.fade-in', {opacity: 0, y: 40, duration: 1, delay: 0.3, ease: "power3.out"});
+    // Reading progress
+    const readingProgress = qs('#readingProgress');
+    window.addEventListener('scroll', () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (docHeight > 0) ? (window.scrollY / docHeight) * 100 : 0;
+      readingProgress.style.width = scrolled + '%';
+    });
+
+    // Subscribe form demo
+    const subscribeForm = qs('#subscribeForm');
+    const subscribeStatus = qs('#subscribeStatus');
+    subscribeForm && subscribeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      subscribeStatus.classList.remove('hidden');
+      setTimeout(() => subscribeStatus.classList.add('hidden'), 3500);
+      subscribeForm.reset();
+    });
+
+    // Newsletter demo
+    const newsletterForm = qs('#newsletterForm');
+    const newsletterStatus = qs('#newsletterStatus');
+    newsletterForm && newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      newsletterStatus.classList.remove('hidden');
+      setTimeout(() => newsletterStatus.classList.add('hidden'), 3500);
+      newsletterForm.reset();
+    });
+
+    // Category filter (client-side demo)
+    qsa('.category-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = e.currentTarget.dataset.cat;
+        // simple filter demo: just alert; can be expanded to filter DOM nodes
+        alert(`Filter demo: show posts for category "${cat}". Implement filtering logic to hide/show posts or query the server.`);
+      });
+    });
+
+    // Tag filter demo
+    qsa('.tag-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        alert(`Filter demo: show posts tagged with "${tag}".`);
+      });
+    });
+
+    // Pagination demo
+    qsa('.pagination-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Pagination demo — implement real paging with server or API.');
+      });
+    });
+
+    // Read article (open single template with content injection)
+    const posts = {
+      1: {
+        title: "5 Tips for Natural Light Wedding Photos",
+        date: "March 12, 2025",
+        readTime: "5 min read",
+        author: "VisionFrames",
+        image: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4a3d1e8f8f3e2b8a1cb1a2b5c6d7e8",
+        caption: "Golden hour couple — VisionFrames",
+        body: `
+          <p>Golden hour provides some of the most flattering light for wedding portraits. Aim to place the couple with the light behind them and use a reflector to gently fill in shadows.</p>
+          <h3>1. Use a Reflector</h3>
+          <p>Using a reflector helps fill shadows and create catchlights without adding harsh artificial light.</p>
+          <h3>2. Engage with the Couple</h3>
+          <p>Small prompts, shared jokes, and movement make portraits feel natural.</p>
+          <h3>3. Mind the Background</h3>
+          <p>Choose clean backgrounds or use a shallow depth of field to separate your subjects.</p>
+        `,
+        likes: 124
+      },
+      2: {
+        title: "Posing Tips That Put Subjects at Ease",
+        date: "Feb 02, 2025",
+        readTime: "4 min read",
+        author: "VisionFrames",
+        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b8c1f4c3a4d5e6f7a8b9c0d1e2f3a4b",
+        caption: "Friendly posing prompts",
+        body: `
+          <p>Posing doesn't need to be stiff. Introduce small movements, use the environment and ask open questions that trigger natural expressions.</p>
+          <h3>Warm Ups</h3>
+          <p>Begin with simple warm-ups — tilt the chin, turn the shoulders, laugh together.</p>
+        `,
+        likes: 98
+      },
+      3: {
+        title: "Essential Gear for Every Shoot",
+        date: "Jan 20, 2025",
+        readTime: "3 min read",
+        author: "VisionFrames",
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b1d2c1f2b2c3d4e5f6g7",
+        caption: "A compact kit",
+        body: `
+          <p>Keep a consistent kit: a reliable camera body, two versatile lenses, a small lighting kit, reflectors and essential accessories.</p>
+        `,
+        likes: 77
+      },
+      4: {
+        title: "Shooting Portraits on Location",
+        date: "Dec 15, 2024",
+        readTime: "6 min read",
+        author: "VisionFrames",
+        image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9b12e5a4a2b2b9d6f9e6d4b4b2c1a1a5",
+        caption: "Outdoor session",
+        body: `
+          <p>Scout the location, identify clean backgrounds and plan poses that interact with the environment.</p>
+        `,
+        likes: 54
+      },
+      5: {
+        title: "How to Photograph Live Events",
+        date: "Nov 10, 2024",
+        readTime: "4 min read",
+        author: "VisionFrames",
+        image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d5f0f9dea6a0bbc8326b66a2d6aa1b4",
+        caption: "Event coverage",
+        body: `
+          <p>Anticipate action, prioritize narrative shots, and stay light on setup to be agile across the venue.</p>
+        `,
+        likes: 43
+      },
+      6: {
+        title: "Color Grading for Consistency",
+        date: "Oct 05, 2024",
+        readTime: "7 min read",
+        author: "VisionFrames",
+        image: "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4a3d1e8f8f3e2b8a1cb1a2b5c6d7e8",
+        caption: "Grading workflow",
+        body: `
+          <p>Establish a base LUT and refine per session. Maintain a consistent color temperature and skin tone across the gallery.</p>
+        `,
+        likes: 31
+      },
+      7: {
+        title: "Growing a Photography Business",
+        date: "Sep 01, 2024",
+        readTime: "5 min read",
+        author: "VisionFrames",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0e2f4f752c8b9f2e7c1fdfb19b2efb8b",
+        caption: "Business tips",
+        body: `
+          <p>Price your services transparently, create repeatable packages and invest in client relationships.</p>
+        `,
+        likes: 28
+      }
+    };
+
+    // Read link click behavior
+    qsa('.read-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = e.currentTarget.dataset.post;
+        openArticle(id);
+      });
+    });
+
+    qsa('.popular-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = e.currentTarget.dataset.post;
+        openArticle(id);
+      });
+    });
+
+    function openArticle(id) {
+      const post = posts[id];
+      if (!post) return alert('Article not found in demo.');
+
+      const section = qs('#single');
+      qs('#single-title').textContent = post.title;
+      qs('#single-meta').textContent = `${post.date} • ${post.readTime || ''}`;
+      qs('#single-author').textContent = `By ${post.author}`;
+      qs('#single-image').src = post.image;
+      qs('#single-image').alt = post.caption || post.title;
+      qs('#single-caption').textContent = post.caption || '';
+      qs('#single-body').innerHTML = post.body;
+      qs('#single-likes').textContent = post.likes || 0;
+
+      // show single article
+      section.classList.remove('hidden');
+      // scroll to the article section smoothly
+      window.scrollTo({ top: section.offsetTop - 60, behavior: 'smooth' });
+
+      // animate content in with GSAP
+      gsap.fromTo('#single .article-body', { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.8 });
+    }
+
+    // Search form demo (client-side simple full-text search over demo posts)
+    const searchForm = qs('#searchForm');
+    searchForm && searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = (qs('#q').value || '').trim().toLowerCase();
+      if (!q) {
+        alert('Enter keywords to search demo posts.');
+        return;
+      }
+      // naive search across titles and bodies
+      const matches = [];
+      Object.keys(posts).forEach(k => {
+        const p = posts[k];
+        const hay = (p.title + ' ' + (p.body || '')).toLowerCase();
+        if (hay.indexOf(q) !== -1) matches.push(k);
+      });
+      if (matches.length === 0) {
+        alert('No demo results found. This is a client-side demo.');
+        return;
+      }
+      // hide all posts then show matches
+      qsa('#postsList article').forEach(a => a.classList.add('hidden'));
+      matches.forEach(id => {
+        const selector = `#postsList article[data-date="${posts[id].date}"], #postsList article:has(.read-link[data-post="${id}"])`;
+        // fallback: show by matching anchor data-post
+        qsa(`#postsList article .read-link[data-post="${id}"]`).forEach(el => el.closest('article').classList.remove('hidden'));
+      });
+      alert(`Found ${matches.length} demo result(s). The list was filtered client-side for demo purposes.`);
+    });
+
+    // Search Modal toggles
+    const searchToggle = qs('#searchToggle');
+    const searchModal = qs('#searchModal');
+    const closeSearch = qs('#closeSearch');
+    const searchModalForm = qs('#searchModalForm');
+
+    searchToggle && searchToggle.addEventListener('click', () => {
+      searchModal.classList.add('show');
+    });
+    closeSearch && closeSearch.addEventListener('click', () => {
+      searchModal.classList.remove('show');
+    });
+    searchModalForm && searchModalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = searchModalForm.q.value.trim();
+      if (!q) return alert('Please enter a search term.');
+      searchModal.classList.remove('show');
+      qs('#q').value = q;
+      // submit search form
+      searchForm.requestSubmit();
+    });
+
+    // GSAP scroll intro animations for cards
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.card-hover').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        delay: i * 0.04,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: card, start: 'top 92%' }
+      });
+    });
+
+    // Hover subtle motion for article images (parallax-like)
+    qsa('#postsList article').forEach((article) => {
+      const img = article.querySelector('img');
+      article.addEventListener('mousemove', (ev) => {
+        const r = article.getBoundingClientRect();
+        const px = (ev.clientX - r.left) / r.width;
+        const py = (ev.clientY - r.top) / r.height;
+        gsap.to(img, { x: (px - 0.5) * 8, y: (py - 0.5) * 6, scale: 1.02, duration: 0.5, ease: 'power3.out' });
+      });
+      article.addEventListener('mouseleave', () => {
+        gsap.to(img, { x: 0, y: 0, scale: 1, duration: 0.6, ease: 'power3.out' });
+      });
+    });
+
+    // Accessibility: allow Enter to open focused articles
+    qsa('article[role="article"]').forEach((art) => {
+      art.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const link = art.querySelector('.read-link');
+          link && link.click();
+        }
+      });
+    });
+
+    // Ensure all images have alt text for accessibility (fallback)
+    qsa('img').forEach(img => { if (!img.alt || img.alt.trim() === '') img.alt = 'VisionFrames photography image'; });
+
+    // Year
+    qs('#year').textContent = new Date().getFullYear();
+
+    // tiny UX: smooth anchor scroll for internal links
+    qsa('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (href === '#') e.preventDefault();
+        // other internal anchors handled normally
+      });
+    });
+
+// small demo: clicking popular link opens article
+qsa('.popular-link').forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); const id = e.currentTarget.dataset.post || 1; openArticle(id); }); });
+</script>
+
+</body>
+</html>

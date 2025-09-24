@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RedesCreation — Freelance Photographer in Banguluru</title>
+  <meta name="description" content="RedesCreation — Freelance Photographer based in Banguluru. Professional wedding, portrait, event and commercial photography. Capturing moments with creativity and care." />
+  <meta name="author" content="RedesCreation" />
+  <link rel="canonical" href="https://www.redescreation.in" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Page - Professional Freelance Photographer Bengaluru">
+  <title>About | VisionFrames Photography</title>
+  <!-- Tailwind CDN -->
+  <script>
+    // Custom Tailwind config: add max-w-6x1 and brand colors
+    tailwind = {
+      config: { 
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: '#F6EDE9',
+                DEFAULT: '#C88C6A',
+                dark: '#8F5A3F'
+              },
+            },
+            fontFamily: {
+              heading: ['Georgia', 'Times New Roman', 'serif'],
+              body: ['Inter', 'system-ui', 'sans-serif']
+            },
+            spacing: {
+              '18': '4.5rem',
+              '22': '5.5rem'
+            },
+            maxWidth: {
+              '6x1': '1200px' /* user requested 'max-w-6x1' */
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Icons (Heroicons CDN) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; }
+    .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .fade-in { opacity: 0; transition: opacity 1s ease-in-out; }
+    .fade-in.show { opacity: 1; }
+    .scale-up { transform: scale(0.95); opacity: 0; transition: transform 0.6s ease, opacity 0.6s ease; }
+    .scale-up.show { transform: scale(1); opacity: 1; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-40 bg-white backdrop-blur border-b border-gray-100"></header>
+    <div class="mx-auto px-6 max-w-6x1 flex items-center justify-between h-20">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-3" aria-label="RedesCreation home">
+          <!-- Logo: simple text + mark -->
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold shadow">
+            RC
+          </div>
+          <div class="leading-tight">
+            <span class="block text-sm font-medium">RedesCreation</span>
+            <span class="block text-xs text-gray-500">Freelance Photographer</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+        <a href="index.html" class="text-sm hover:text-brand.DEFAULT">Home</a>
+        <a href="services.html" class="text-sm hover:text-brand.DEFAULT">Services</a>
+        <a href="portfolio.html" class="text-sm hover:text-brand.DEFAULT">Portfolio</a>
+        <a href="about.html".html" class="text-sm hover:text-brand.DEFAULT">About</a>
+        <a href="blog.html" class="text-sm hover:text-brand.DEFAULT">Blog</a>
+        <a href="contact.html" class="text-sm hover:text-brand.DEFAULT">Contact</a>
+        <button id="searchToggle" class="ml-6 text-sm px-3 py-2 rounded hover:bg-gray-50" aria-label="Open search">
+          <i data-feather="search" class="inline-block" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="contact.html" class="text-sm px-4 py-2 border border-brand-DEFAULT rounded text-brand-DEFAULT hover:bg-brand-DEFAULT hover:text-white transition">Book Now</a>
+      </div>
+
+      <!-- Mobile controls -->
+      <div class="md:hidden flex items-center gap-3">
+        <button id="mobileSearchBtn" aria-label="Search" class="p-2">
+          <i data-feather="search"></i>
+        </button>
+        <button id="hamburger" aria-label="Open menu" class="p-2">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile slide-out menu -->
+    <div id="mobileMenu" class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform translate-x-full transition-transform z-50" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="p-6 flex items-center justify-between border-b">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold">RC</div>
+          <div>
+            <div class="text-sm font-medium">RedesCreation</div>
+            <div class="text-xs text-gray-500">Photographer — Banguluru</div>
+          </div>
+        </div>
+        <button id="mobileClose" aria-label="Close menu" class="p-2">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4">  
+        <a href="index.html" class="block text-lg">Home</a>
+        <a href="services.html" class="block text-lg">Services</a>
+        <a href="portfolio.html" class="block text-lg">Portfolio</a>
+        <a href="ab'.html" class="block text-lg">About</a>
+        <a href="blog.html" class="block text-lg">Blog</a>
+        <a href="contact.html" class="block text-lg">Contact</a>
+ 
+        <div class="pt-4 border-t">
+          <form role="search" aria-label="Mobile search">
+            <input class="w-full p-2 border rounded" placeholder="Search..." />
+          </form>
+          <div class="flex gap-3 mt-4">
+            <a href="#" aria-label="Instagram" class="p-2 rounded hover:bg-gray-50"><i data-feather="instagram"></i></a>
+            <a href="#" aria-label="Facebook" class="p-2 rounded hover:bg-gray-50"><i data-feather="facebook"></i></a>
+            <a href="#" aria-label="Twitter" class="p-2 rounded hover:bg-gray-50"><i data-feather="twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="relative h-[85vh] flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative text-center text-white px-6">
+      <h1 class="text-6xl font-bold mb-4 reveal">My Story</h1>
+      <p class="text-xl max-w-2xl mx-auto reveal">Documenting life’s most authentic moments with passion and creativity.</p>
+    </div>
+  </section>
+
+  <!-- ================= INTRO ================= -->
+  <section class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e" alt="Photographer" class="rounded-3xl shadow-2xl">
+    </div>
+    <div class="reveal">
+      <h2 class="text-4xl font-bold mb-6">Meet Ananya</h2>
+      <p class="mb-4 leading-relaxed">I’m a freelance photographer based in Bengaluru, India. Over the last decade, I’ve developed a signature style blending documentary and fine-art techniques to produce photographs that are soulful and timeless.</p>
+      <p class="mb-4 leading-relaxed">My expertise ranges from weddings and couple sessions to brand campaigns and editorial portraits. Every assignment is a fresh opportunity to create magic with light and composition.</p>
+      <a href="portfolio.html" class="inline-block mt-6 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition">See My Work</a>
+    </div>
+  </section>
+
+  <!-- ================= TIMELINE ================= -->
+  <section class="bg-gray-50 py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16 reveal">Journey So Far</h2>
+      <div class="space-y-16">
+        <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+          <div>
+            <h3 class="text-3xl font-semibold mb-4">2013 – First Camera</h3>
+            <p>Bought my first DSLR during college. Experimented with portraits and street photography, learning the basics through trial and error.</p>
+          </div>
+          <img src="https://images.unsplash.com/photo-1500048993953-d23a436266cf" class="rounded-xl shadow-xl" alt="first camera">
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-center reveal md:flex-row-reverse">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="rounded-xl shadow-xl" alt="travel">
+          <div>
+            <h3 class="text-3xl font-semibold mb-4">2018 – Exploring Travel Photography</h3>
+            <p>Travelled across India and Southeast Asia, capturing landscapes and cultures. This experience shaped my visual storytelling style.</p>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+          <div>
+            <h3 class="text-3xl font-semibold mb-4">2021 – Full-Time Photographer</h3>
+            <p>Turned my passion into a profession. Started VisionFrames Photography and began working with clients for weddings, portraits, and commercial projects.</p>
+          </div>
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" class="rounded-xl shadow-xl" alt="career">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CORE VALUES ================= -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-4xl font-bold text-center mb-16 reveal">What Drives Me</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white shadow-lg rounded-2xl p-8 text-center scale-up">
+        <h3 class="text-2xl font-semibold mb-4">Authenticity</h3>
+        <p>Capturing honest emotions and raw moments is at the heart of everything I do.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl p-8 text-center scale-up">
+        <h3 class="text-2xl font-semibold mb-4">Creativity</h3>
+        <p>Exploring new angles, lighting, and perspectives to make every project unique.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl p-8 text-center scale-up">
+        <h3 class="text-2xl font-semibold mb-4">Connection</h3>
+        <p>Building trust with clients to create a comfortable space for genuine moments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="bg-gray-100 py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16 reveal">Client Stories</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-white rounded-xl shadow-md p-8 fade-in">
+          <p class="italic mb-4">“Ananya’s ability to capture the essence of our wedding day is unmatched. The photos are breathtaking.”</p>
+          <h4 class="font-bold">– Riya & Aarav</h4>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-8 fade-in">
+          <p class="italic mb-4">“Working with her was seamless and fun. She made our brand shoot effortless and creative.”</p>
+          <h4 class="font-bold">– Sienna Studio</h4>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-8 fade-in">
+          <p class="italic mb-4">“Her mentorship sessions gave me confidence to start my own photography business.”</p>
+          <h4 class="font-bold">– Varun, Student</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="text-center py-20 reveal">
+    <h2 class="text-4xl font-bold mb-6">Let’s Tell Your Story</h2>
+    <p class="max-w-2xl mx-auto mb-8">Whether it’s a wedding, portrait session, or brand shoot, I’d love to create images you’ll treasure for life.</p>
+    <a href="contact.html" class="bg-black text-white px-8 py-4 rounded-full hover:bg-gray-800 transition">Get In Touch</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-white border-t border-gray-100 py-12">
+    <div class="mx-auto max-w-6x1 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-brand-DEFAULT text-white flex items-center justify-center font-semibold">RC</div>
+          <div>
+            <div class="font-semibold">RedesCreation</div>
+            <div class="text-sm text-gray-500">Freelance Photographer — Banguluru</div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-gray-600">Capturing moments with creativity and care. Contact for bookings and commercial enquiries.</p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Services</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="services.html">Weddings</a></li>
+          <li><a href="services.html">Portraits</a></li>
+          <li><a href="services.html">Events</a></li>
+          <li><a href="services.html">Commercial</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Resources</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Contact</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li>Phone: +91 96766 59153</li>
+          <li>Email: <a href="mailto:info@redescreation.in" class="hover:underline">info@redescreation.in</a></li>
+          <li>Website: <a href="https://www.redescreation.in" class="hover:underline">www.redescreation.in</a></li>
+        </ul>
+
+        <div class="mt-4 flex gap-3">
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Instagram"><i data-feather="instagram"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Facebook"><i data-feather="facebook"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t pt-6 text-center text-sm text-gray-500">
+      © <span id="year"></span> RedesCreation — All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+   // Initialize feather icons
+    feather.replace();
+
+    // Simple fade-in on scroll for elements with class fade-in-up / slide-left
+    (function() {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      document.querySelectorAll('.fade-in-up, .slide-left').forEach(el => io.observe(el));
+    })();
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(0)';
+      mobileMenu.setAttribute('aria-hidden','false');
+    });
+    mobileClose.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(100%)';
+      mobileMenu.setAttribute('aria-hidden','true');
+    });
+
+    // Search toggle (desktop)
+    const searchToggle = document.getElementById('searchToggle');
+    searchToggle && searchToggle.addEventListener('click', () => {
+      // simple prompt-based search for prototype
+      const q = prompt('Search site:');
+      if (q) alert('Search prototype: "' + q + '" — in a live site this would run real queries.');
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const onScroll = () => {
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        if (elementTop < windowHeight - 50) {
+          reveals[i].classList.add('active');
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    const fades = document.querySelectorAll('.fade-in, .scale-up');
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    fades.forEach(fade => fadeObserver.observe(fade));
+  </script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

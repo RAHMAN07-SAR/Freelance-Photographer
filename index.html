@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RedesCreation — Freelance Photographer in Banguluru</title>
+  <meta name="description" content="RedesCreation — Freelance Photographer based in Banguluru. Professional wedding, portrait, event and commercial photography. Capturing moments with creativity and care." />
+  <meta name="author" content="RedesCreation" />
+  <link rel="canonical" href="https://www.redescreation.in" />
+  <!-- Tailwind CDN -->
+  <script>
+    // Custom Tailwind config: add max-w-6x1 and brand colors
+    tailwind = {
+      config: { 
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: '#F6EDE9',
+                DEFAULT: '#C88C6A',
+                dark: '#8F5A3F'
+              },
+            },
+            fontFamily: {
+              heading: ['Georgia', 'Times New Roman', 'serif'],
+              body: ['Inter', 'system-ui', 'sans-serif']
+            },
+            spacing: {
+              '18': '4.5rem',
+              '22': '5.5rem'
+            },
+            maxWidth: {
+              '6x1': '1200px' /* user requested 'max-w-6x1' */
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons (Heroicons CDN) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <style>
+    /* Extra styles for animations and minor polish */
+    html { scroll-behavior: smooth; }
+    .fade-in-up { transform: translateY(10px); opacity: 0; transition: all 600ms cubic-bezier(.2,.8,.2,1); }
+    .fade-in-up.visible { transform: translateY(0); opacity: 1; }
+    .slide-left { transform: translateX(20px); opacity: 0; transition: all 600ms cubic-bezier(.2,.8,.2,1); }
+    .slide-left.visible { transform: translateX(0); opacity: 1; }
+    .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); }
+    .hero-overlay { background: linear-gradient(90deg, rgba(246,237,233,0.9) 0%, rgba(255,255,255,0.0) 60%); }
+    /* Custom utility to mimic max-w-6x1 via a class fallback */
+    .max-w-6x1 { max-width: 1200px; }
+    /* Lightbox styles */
+    .lightbox-bg { background: rgba(0,0,0,0.8); }
+    /* Testimonials */
+    .carousel-track { display: flex; gap: 1.5rem; transition: transform 450ms cubic-bezier(.2,.8,.2,1); }
+    /* Make sure map iframe fills container */
+    .map-embed iframe { width: 100%; height: 100%; border: 0; }
+    /* Pricing highlight */
+    .popular { box-shadow: 0 10px 30px rgba(200,140,100,0.12); transform: translateY(-6px); }
+    /* Blog image aspect */
+    .ratio-16-9 { position: relative; padding-top: 56.25%; overflow: hidden; }
+    .ratio-16-9 img { position: absolute; width: 100%; height: 100%; object-fit: cover; left:0; top:0; }
+  </style>
+</head>
+<body class="text-gray-800 bg-white font-body antialiased">
+
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-40 bg-white backdrop-blur border-b border-gray-100"></header>
+    <div class="mx-auto px-6 max-w-6x1 flex items-center justify-between h-20">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-3" aria-label="RedesCreation home">
+          <!-- Logo: simple text + mark -->
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold shadow">
+            RC
+          </div>
+          <div class="leading-tight">
+            <span class="block text-sm font-medium">RedesCreation</span>
+            <span class="block text-xs text-gray-500">Freelance Photographer</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+        <a href="index.html" class="text-sm hover:text-brand.DEFAULT">Home</a>
+        <a href="services.html" class="text-sm hover:text-brand.DEFAULT">Services</a>
+        <a href="portfolio.html" class="text-sm hover:text-brand.DEFAULT">Portfolio</a>
+        <a href="about.html".html" class="text-sm hover:text-brand.DEFAULT">About</a>
+        <a href="blog.html" class="text-sm hover:text-brand.DEFAULT">Blog</a>
+        <a href="contact.html" class="text-sm hover:text-brand.DEFAULT">Contact</a>
+        <button id="searchToggle" class="ml-6 text-sm px-3 py-2 rounded hover:bg-gray-50" aria-label="Open search">
+          <i data-feather="search" class="inline-block" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="contact.html" class="text-sm px-4 py-2 border border-brand-DEFAULT rounded text-brand-DEFAULT hover:bg-brand-DEFAULT hover:text-white transition">Book Now</a>
+      </div>
+
+      <!-- Mobile controls -->
+      <div class="md:hidden flex items-center gap-3">
+        <button id="mobileSearchBtn" aria-label="Search" class="p-2">
+          <i data-feather="search"></i>
+        </button>
+        <button id="hamburger" aria-label="Open menu" class="p-2">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile slide-out menu -->
+    <div id="mobileMenu" class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform translate-x-full transition-transform z-50" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="p-6 flex items-center justify-between border-b">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold">RC</div>
+          <div>
+            <div class="text-sm font-medium">RedesCreation</div>
+            <div class="text-xs text-gray-500">Photographer — Banguluru</div>
+          </div>
+        </div>
+        <button id="mobileClose" aria-label="Close menu" class="p-2">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4">  
+        <a href="index.html" class="block text-lg">Home</a>
+        <a href="services.html" class="block text-lg">Services</a>
+        <a href="portfolio.html" class="block text-lg">Portfolio</a>
+        <a href="ab'.html" class="block text-lg">About</a>
+        <a href="blog.html" class="block text-lg">Blog</a>
+        <a href="contact.html" class="block text-lg">Contact</a>
+ 
+        <div class="pt-4 border-t">
+          <form role="search" aria-label="Mobile search">
+            <input class="w-full p-2 border rounded" placeholder="Search..." />
+          </form>
+          <div class="flex gap-3 mt-4">
+            <a href="#" aria-label="Instagram" class="p-2 rounded hover:bg-gray-50"><i data-feather="instagram"></i></a>
+            <a href="#" aria-label="Facebook" class="p-2 rounded hover:bg-gray-50"><i data-feather="facebook"></i></a>
+            <a href="#" aria-label="Twitter" class="p-2 rounded hover:bg-gray-50"><i data-feather="twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main id="home" class="pt-8">
+    <section class="relative">
+      <div class="hero-overlay absolute inset-0 pointer-events-none"></div>
+      <!-- Use placeholder background image (replace with client's) -->
+      <div class="bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b9f36e0f99a7c2b2d6e2295e4e0af3f')] bg-cover bg-center h-[560px] md:h-[640px] flex items-center">
+        <div class="mx-auto max-w-6x1 px-6 w-full">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="p-8 md:p-12 bg-white/85 rounded-lg shadow-lg max-w-xl fade-in-up" style="backdrop-filter: blur(2px);">
+              <h1 class="text-4xl md:text-5xl font-heading text-gray-900">Capturing Moments, Crafting Stories</h1>
+              <p class="mt-4 text-gray-600">Professional freelance photographer based in Banguluru — weddings, portraits, events & commercial photography with a timeless aesthetic.</p>
+              <div class="mt-6 flex items-center gap-4">
+                <a href="contact.html" class="px-5 py-3 bg-brand-DEFAULT text-white rounded shadow hover:bg-brand-dark transition">Get Started</a>
+                <a href="portfolio.html" class="text-sm text-gray-700 hover:underline">View Portfolio →</a>
+              </div>
+              <div class="mt-6 text-xs text-gray-400">Available for local and destination shoots. Quick turnaround and professional retouching included.</div>
+            </div>
+
+            <div class="hidden md:block">
+              <!-- Right-hand image block -->
+              <div class="rounded-lg overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0e2f4f752c8b9f2e7c1fdfb19b2efb8b" alt="Photographer on a shoot" class="w-full h-[420px] object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Featured / Services ===== -->
+    <section id="services" class="py-16">
+      <div class="mx-auto max-w-6x1 px-6">
+        <div class="text-center">
+          <h2 class="text-sm uppercase tracking-wide text-brand-DEFAULT">Services</h2>
+          <h3 class="text-3xl font-heading mt-2">Featured Offerings</h3>
+          <p class="mt-3 text-gray-600 max-w-2xl mx-auto">A selection of tailored photography services designed to meet your needs — from intimate portraits to full wedding-day coverage.</p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Service Item -->
+          <article class="p-6 border rounded-lg hover:shadow-lg transition fade-in-up" aria-labelledby="svc-wedding">
+            <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-DEFAULT mb-4">
+              <i data-feather="heart" class="w-6 h-6"></i>
+            </div>
+            <h4 id="svc-wedding" class="font-semibold">Wedding Photography</h4>
+            <p class="mt-2 text-sm text-gray-600">Full-day and partial packages, candid coverage, and carefully retouched final images.</p>
+            <a href="portfolio.html" class="mt-4 inline-block text-sm text-brand-DEFAULT hover:underline">See wedding gallery →</a>
+          </article>
+
+          <article class="p-6 border rounded-lg hover:shadow-lg transition fade-in-up">
+            <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-DEFAULT mb-4">
+              <i data-feather="user" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-semibold">Portraits & Headshots</h4>
+            <p class="mt-2 text-sm text-gray-600">Studio and on-location portraits perfect for professionals and creatives.</p>
+            <a href="portfolio.html" class="mt-4 inline-block text-sm text-brand-DEFAULT hover:underline">See portrait examples →</a>
+          </article>
+
+          <article class="p-6 border rounded-lg hover:shadow-lg transition fade-in-up">
+            <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-DEFAULT mb-4">
+              <i data-feather="camera" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-semibold">Event Coverage</h4>
+            <p class="mt-2 text-sm text-gray-600">Conferences, parties, and corporate events captured with discretion and style.</p>
+            <a href="portfolio.html" class="mt-4 inline-block text-sm text-brand-DEFAULT hover:underline">View events →</a>
+          </article>
+
+          <article class="p-6 border rounded-lg hover:shadow-lg transition fade-in-up">
+            <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-DEFAULT mb-4">
+              <i data-feather="package" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-semibold">Commercial & Product</h4>
+            <p class="mt-2 text-sm text-gray-600">High-quality product images and lifestyle photography for your business.</p>
+            <a href="portfolio.html" class="mt-4 inline-block text-sm text-brand-DEFAULT hover:underline">See commercial work →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About & Story ===== -->
+    <section id="about" class="py-20 bg-gray-50">
+      <div class="mx-auto max-w-6x1 px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-sm uppercase tracking-wide text-brand-DEFAULT">About</h3>
+          <h2 class="text-3xl font-heading mt-2">Hi — I'm the artist behind the lens</h2>
+          <p class="mt-4 text-gray-700">With over a decade of experience, I craft images that feel timeless. My approach blends documentary candor with editorial direction — delivering photographs that tell your story naturally and beautifully.</p>
+
+          <ul class="mt-6 space-y-3 text-gray-600">
+            <li class="flex items-start gap-3">
+              <i data-feather="clock" class="w-5 h-5 text-brand-DEFAULT mt-1"></i>
+              <div><strong>Fast Turnaround:</strong> Edited images in as few as 7 business days.</div>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-feather="award" class="w-5 h-5 text-brand-DEFAULT mt-1"></i>
+              <div><strong>High standards:</strong> Professional retouching and color grading included.</div>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-feather="map-pin" class="w-5 h-5 text-brand-DEFAULT mt-1"></i>
+              <div><strong>Based in Banguluru:</strong> Available for destination work worldwide.</div>
+            </li>
+          </ul>
+
+          <div class="mt-6">
+            <a href="portfolio.html" class="px-4 py-2 border border-brand-DEFAULT rounded text-brand-DEFAULT hover:bg-brand-DEFAULT hover:text-white transition">View my work</a>
+            <a href="contact.html" class="ml-3 text-sm text-gray-700 hover:underline">Let's chat →</a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=0e2f4f752c8b9f2e7c1fdfb19b2efb8b" alt="Photographer portrait" class="w-full h-64 object-cover rounded-lg shadow" />
+          <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9dffb84f2d76c86a1b1935a3f9e4f07d" alt="Behind the scenes" class="w-full h-64 object-cover rounded-lg shadow" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Portfolio / Gallery with filters & lightbox ===== -->
+    <section id="portfolio" class="py-20">
+      <div class="mx-auto max-w-6x1 px-6">
+        <div class="text-center">
+          <h2 class="text-sm uppercase tracking-wide text-brand-DEFAULT">Portfolio</h2>
+          <h3 class="text-3xl font-heading mt-2">Selected Work</h3>
+          <p class="mt-3 text-gray-600">Filterable gallery showcasing weddings, portraits, events and commercial work. Click any image to open a lightbox with details.</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="mt-8 flex flex-wrap gap-3 justify-center" role="tablist" aria-label="Portfolio filters">
+          <button class="filter-btn px-4 py-2 bg-brand-light text-brand-DEFAULT rounded" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn px-4 py-2 border rounded" data-filter="wedding">Weddings</button>
+          <button class="filter-btn px-4 py-2 border rounded" data-filter="portrait">Portraits</button>
+          <button class="filter-btn px-4 py-2 border rounded" data-filter="event">Events</button>
+          <button class="filter-btn px-4 py-2 border rounded" data-filter="commercial">Commercial</button>
+        </div>
+
+        <!-- Grid -->
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Portfolio Item template repeated -->
+          <figure class="portfolio-item rounded overflow-hidden shadow hover:shadow-xl transition" data-category="wedding">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f3e1a2f24eaa9c94f7bbf6b6f6f6f4e" alt="Wedding couple smiling" class="cursor-pointer" data-title="Anna & Rahul — Wedding" data-desc="Candid moments captured in golden light"/>
+            </div>
+            <figcaption class="p-4 bg-white">
+              <h4 class="font-semibold">Anna & Rahul — Wedding</h4>
+              <p class="text-sm text-gray-600 mt-1">A joyful ceremony with natural light portraits.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="portfolio-item rounded overflow-hidden shadow hover:shadow-xl transition" data-category="portrait">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0b3c7c1a1d2f9430b7a8c7f2b8a0aabc" alt="Portrait - woman" class="cursor-pointer" data-title="Studio Portrait" data-desc="Professional headshot with softbox lighting"/>
+            </div>
+            <figcaption class="p-4 bg-white">
+              <h4 class="font-semibold">Studio Portrait</h4>
+              <p class="text-sm text-gray-600 mt-1">Clean editorial-style headshots.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="portfolio-item rounded overflow-hidden shadow hover:shadow-xl transition" data-category="event">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d5f0f9dea6a0bbc8326b66a2d6aa1b4" alt="Concert event photography" class="cursor-pointer" data-title="Live Event" data-desc="Concert photography with motion and color"/>
+            </div>
+            <figcaption class="p-4 bg-white">
+              <h4 class="font-semibold">Live Event</h4>
+              <p class="text-sm text-gray-600 mt-1">Captured energy and atmosphere.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="portfolio-item rounded overflow-hidden shadow hover:shadow-xl transition" data-category="commercial">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8b1b8ade345f2e8b12fa2f2d7dbb3b6e" alt="Product photography - kitchenware" class="cursor-pointer" data-title="Product — Ceramic Bowl" data-desc="White background product shot for ecommerce"/>
+            </div>
+            <figcaption class="p-4 bg-white">
+              <h4 class="font-semibold">Product — Ceramic Bowl</h4>
+              <p class="text-sm text-gray-600 mt-1">Commercial product photography.</p>
+            </figcaption>
+          </figure>
+
+          <!-- Repeat more items to simulate a full gallery -->
+          <figure class="portfolio-item rounded overflow-hidden shadow hover:shadow-xl transition" data-category="wedding">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=64e8d1e7c1e2f1b6262d7b8e8e8c5a7e" alt="Bridal portrait" class="cursor-pointer" data-title="Bridal Portrait" data-desc="Timeless bridal portrait in natural light" />
+            </div>
+            <figcaption class="p-4 bg-white">
+              <h4 class="font-semibold">Bridal Portrait</h4>
+              <p class="text-sm text-gray-600 mt-1">Soft, emotive portraits of the bride.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="portfolio-item rounded overflow-hidden shadow hover:shadow-xl transition" data-category="portrait">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9b12e5a4a2b2b9d6f9e6d4b4b2c1a1a5" alt="Outdoor portrait - male" class="cursor-pointer" data-title="Outdoor Portrait" data-desc="Natural light outdoor portrait" />
+            </div>
+            <figcaption class="p-4 bg-white">
+              <h4 class="font-semibold">Outdoor Portrait</h4>
+              <p class="text-sm text-gray-600 mt-1">Environmental portraits with character.</p>
+            </figcaption>
+          </figure>
+
+        </div>
+
+        <!-- Lightbox (hidden by default) -->
+        <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center lightbox-bg">
+          <div class="max-w-4xl w-full mx-4">
+            <div class="bg-white rounded-lg overflow-hidden">
+              <div class="flex items-start justify-between p-4 border-b">
+                <div>
+                  <h3 id="lb-title" class="text-lg font-semibold"></h3>
+                  <p id="lb-desc" class="text-sm text-gray-600"></p>
+                </div>
+                <button id="lb-close" class="p-2" aria-label="Close lightbox"><i data-feather="x"></i></button>
+              </div>
+              <div id="lb-content" class="p-4">
+                <img id="lb-img" src="" alt="" class="w-full h-96 object-contain" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Testimonials ===== -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+      <div class="mx-auto max-w-6x1 px-6">
+        <div class="text-center">
+          <h3 class="text-sm uppercase tracking-wide text-brand-DEFAULT">Testimonials</h3>
+          <h2 class="text-3xl font-heading mt-2">What clients say</h2>
+          <p class="mt-3 text-gray-600">Real feedback from people who trusted RedesCreation to capture their important moments.</p>
+        </div>
+
+        <div class="mt-8 relative">
+          <div class="overflow-hidden">
+            <div id="carouselTrack" class="carousel-track p-6">
+              <!-- Slide 1 -->
+              <div class="min-w-[320px] bg-white p-6 rounded-lg shadow">
+                <div class="flex items-center gap-4">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0b3c7c1a1d2f9430b7a8c7f2b8a0aabc" alt="Client headshot" class="w-12 h-12 rounded-full object-cover" />
+                  <div>
+                    <div class="font-semibold">Nina S.</div>
+                    <div class="text-xs text-gray-500">Bride</div>
+                  </div>
+                </div>
+                <p class="mt-4 text-gray-600">"RedesCreation captured our wedding so beautifully — every moment felt effortless and the photos are stunning."</p>
+                <div class="mt-4 flex items-center gap-1 text-yellow-400">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="min-w-[320px] bg-white p-6 rounded-lg shadow">
+                <div class="flex items-center gap-4">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0b3c7c1a1d2f9430b7a8c7f2b8a0aabc" alt="Client headshot" class="w-12 h-12 rounded-full object-cover" />
+                  <div>
+                    <div class="font-semibold">Arjun V.</div>
+                    <div class="text-xs text-gray-500">Corporate Client</div>
+                  </div>
+                </div>
+                <p class="mt-4 text-gray-600">"Professional, efficient and creative — the imagery helped our campaign perform better than expected."</p>
+                <div class="mt-4 flex items-center gap-1 text-yellow-400">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="min-w-[320px] bg-white p-6 rounded-lg shadow">
+                <div class="flex items-center gap-4">
+                  <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8a6f2f1e4d2a3f6b8c2d4e6f6a1b2c3d" alt="Client headshot" class="w-12 h-12 rounded-full object-cover" />
+                  <div>
+                    <div class="font-semibold">Priya R.</div>
+                    <div class="text-xs text-gray-500">Model</div>
+                  </div>
+                </div>
+                <p class="mt-4 text-gray-600">"Loved the portrait session — relaxed vibe and amazing final images. Highly recommended."</p>
+                <div class="mt-4 flex items-center gap-1 text-yellow-400">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Carousel controls -->
+          <div class="absolute -translate-y-1/2 top-1/2 left-4">
+            <button id="prevSlide" class="bg-white p-2 rounded-full shadow"><i data-feather="chevron-left"></i></button>
+          </div>
+          <div class="absolute -translate-y-1/2 top-1/2 right-4">
+            <button id="nextSlide" class="bg-white p-2 rounded-full shadow"><i data-feather="chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Pricing / Packages ===== -->
+    <section id="pricing" class="py-20">
+      <div class="mx-auto max-w-6x1 px-6">
+        <div class="text-center">
+          <h3 class="text-sm uppercase tracking-wide text-brand-DEFAULT">Packages</h3>
+          <h2 class="text-3xl font-heading mt-2">Pricing & Packages</h2>
+          <p class="mt-3 text-gray-600">Transparent pricing for common requests. Custom quotes available — contact for a tailored package.</p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 border rounded-lg text-center">
+            <div class="text-2xl font-semibold">Starter</div>
+            <div class="mt-2 text-sm text-gray-600">Perfect for portraits and short events</div>
+            <div class="mt-6 text-4xl font-bold">₹8,999</div>
+            <ul class="mt-6 text-left text-gray-600 space-y-2">
+              <li>1 hour session</li>
+              <li>10 edited images</li>
+              <li>Online gallery</li>
+            </ul>
+            <a href="contact.html" class="mt-6 inline-block px-4 py-2 border rounded">Book Starter</a>
+          </div>
+
+          <div class="p-6 border rounded-lg popular text-center">
+            <div class="text-2xl font-semibold">Classic</div>
+            <div class="mt-2 text-sm text-gray-600">Most popular — weddings & events</div>
+            <div class="mt-6 text-4xl font-bold">₹24,999</div>
+            <ul class="mt-6 text-left text-gray-600 space-y-2">
+              <li>6 hour coverage</li>
+              <li>150+ edited images</li>
+              <li>Online gallery & prints</li>
+            </ul>
+            <a href="contact.html" class="mt-6 inline-block px-6 py-3 bg-brand-DEFAULT text-white rounded shadow">Choose Classic</a>
+          </div>
+
+          <div class="p-6 border rounded-lg text-center">
+            <div class="text-2xl font-semibold">Premium</div>
+            <div class="mt-2 text-sm text-gray-600">Full-day coverage and album</div>
+            <div class="mt-6 text-4xl font-bold">₹49,999</div>
+            <ul class="mt-6 text-left text-gray-600 space-y-2">
+              <li>Full day coverage</li>
+              <li>400+ edited images</li>
+              <li>Professional album & prints</li>
+            </ul>
+            <a href="contact.html" class="mt-6 inline-block px-4 py-2 border rounded">Book Premium</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Blog / News ===== -->
+    <section id="blog" class="py-20 bg-gray-50">
+      <div class="mx-auto max-w-6x1 px-6">
+        <div class="text-center">
+          <h3 class="text-sm uppercase tracking-wide text-brand-DEFAULT">Blog</h3>
+          <h2 class="text-3xl font-heading mt-2">Latest Stories</h2>
+          <p class="mt-3 text-gray-600">Tips, behind-the-scenes, and highlights from recent shoots.</p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Blog card -->
+          <article class="bg-white rounded-lg overflow-hidden shadow">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4a3d1e8f8f3e2b8a1cb1a2b5c6d7e8" alt="Blog - wedding lighting tips" />
+            </div>
+            <div class="p-6">
+              <h4 class="font-semibold">5 Tips for Natural Light Wedding Photos</h4>
+              <p class="mt-2 text-sm text-gray-600">How to make the most of golden hour and diffuse light for beautiful portraits.</p>
+              <div class="mt-4 text-xs text-gray-400">March 12, 2025 • 5 min read</div>
+              <a href="#" class="mt-4 inline-block text-sm text-brand-DEFAULT hover:underline">Read article →</a>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-lg overflow-hidden shadow">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b8c1f4c3a4d5e6f7a8b9c0d1e2f3a4b" alt="Blog - portrait posing" />
+            </div>
+            <div class="p-6">
+              <h4 class="font-semibold">Posing Tips That Put Subjects at Ease</h4>
+              <p class="mt-2 text-sm text-gray-600">Simple directions and warm-up exercises for relaxed portraits.</p>
+              <div class="mt-4 text-xs text-gray-400">February 02, 2025 • 4 min read</div>
+              <a href="#" class="mt-4 inline-block text-sm text-brand-DEFAULT hover:underline">Read article →</a>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-lg overflow-hidden shadow">
+            <div class="ratio-16-9">
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b8c1f4c3a4d5e6f7a8b9c0d1e2f3a4b" alt="Blog - gear list" />
+            </div>
+            <div class="p-6">
+              <h4 class="font-semibold">Essential Gear for Every Shoot</h4>
+              <p class="mt-2 text-sm text-gray-600">From lenses to lighting — what we bring to ensure consistent results.</p>
+              <div class="mt-4 text-xs text-gray-400">January 20, 2025 • 3 min read</div>
+              <a href="#" class="mt-4 inline-block text-sm text-brand-DEFAULT hover:underline">Read article →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="py-16">
+      <div class="mx-auto max-w-6x1 px-6">
+        <div class="text-center">
+          <h3 class="text-sm uppercase tracking-wide text-brand-DEFAULT">FAQ</h3>
+          <h2 class="text-3xl font-heading mt-2">Frequently Asked Questions</h2>
+          <p class="mt-3 text-gray-600">Answers to common questions about bookings, delivery and travel.</p>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-lg shadow">
+            <button class="faq-question w-full text-left p-5 border-b flex items-center justify-between" aria-expanded="false">
+              <span>How long before the wedding should I book?</span>
+              <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="faq-answer p-5 hidden text-gray-600">We recommend booking 6-12 months in advance for weekend dates; 3-6 months is often fine for weekday coverage.</div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow">
+            <button class="faq-question w-full text-left p-5 border-b flex items-center justify-between" aria-expanded="false">
+              <span>What is included in the gallery delivery?</span>
+              <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="faq-answer p-5 hidden text-gray-600">All final images are delivered via a downloadable online gallery. Prints and albums are optional add-ons.</div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow">
+            <button class="faq-question w-full text-left p-5 border-b flex items-center justify-between" aria-expanded="false">
+              <span>Do you travel for shoots?</span>
+              <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="faq-answer p-5 hidden text-gray-600">Yes — local travel within Banguluru is often included. For destination shoots, travel costs are added to the quote.</div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow">
+            <button class="faq-question w-full text-left p-5 border-b flex items-center justify-between" aria-expanded="false">
+              <span>How many images will we receive?</span>
+              <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="faq-answer p-5 hidden text-gray-600">Number of images depends on the package — Starter (10), Classic (150+), Premium (400+). All images are fully edited.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact / Get in Touch ===== -->
+    <section id="contact" class="py-20 bg-brand-light">
+      <div class="mx-auto max-w-6x1 px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div>
+          <h3 class="text-sm uppercase tracking-wide text-brand-DEFAULT">Contact</h3>
+          <h2 class="text-3xl font-heading mt-2">Let's create something beautiful</h2>
+          <p class="mt-3 text-gray-700">Ready to book or want a custom quote? Reach out and we'll respond within 48 hours.</p>
+
+          <div class="mt-6 space-y-4 text-gray-700">
+            <div class="flex items-start gap-3">
+              <i data-feather="phone" class="w-6 h-6 text-brand-DEFAULT"></i>
+              <div>
+                <div class="font-semibold">Phone</div>
+                <div class="text-sm">+91 96766 59153</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-feather="mail" class="w-6 h-6 text-brand-DEFAULT"></i>
+              <div>
+                <div class="font-semibold">Email</div>
+                <div class="text-sm">info@redescreation.in</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-feather="globe" class="w-6 h-6 text-brand-DEFAULT"></i>
+              <div>
+                <div class="font-semibold">Website</div>
+                <div class="text-sm">www.redescreation.in</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex gap-3">
+            <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Instagram"><i data-feather="instagram"></i></a>
+            <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Facebook"><i data-feather="facebook"></i></a>
+            <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <form id="contactForm" class="bg-white p-6 rounded-lg shadow" aria-label="Contact form">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="text-sm font-medium">Name</span>
+                <input required name="name" type="text" class="mt-1 w-full p-3 border rounded" placeholder="Your name" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium">Phone</span>
+                <input required name="phone" type="tel" class="mt-1 w-full p-3 border rounded" placeholder="+91 9xxxxxxxxx" />
+              </label>
+            </div>
+            <div class="mt-4">
+              <label class="block">
+                <span class="text-sm font-medium">Email</span>
+                <input required name="email" type="email" class="mt-1 w-full p-3 border rounded" placeholder="you@example.com" />
+              </label>
+            </div>
+            <div class="mt-4">
+              <label class="block">
+                <span class="text-sm font-medium">Message</span>
+                <textarea required name="message" rows="4" class="mt-1 w-full p-3 border rounded" placeholder="Tell me about your project..."></textarea>
+              </label>
+            </div>
+
+            <div class="mt-4 flex items-center gap-3">
+              <button type="submit" class="px-5 py-3 bg-brand-DEFAULT text-white rounded">Send message</button>
+              <div id="contactStatus" class="text-sm text-green-600 hidden">Message sent. Thank you!</div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Map embed -->
+      <div class="mt-10 mx-auto max-w-6x1 px-6">
+        <div class="h-64 rounded-lg overflow-hidden map-embed shadow">
+          <!-- Embedded Google Map centered on Bengaluru (Banguluru) -->
+          <iframe title="RedesCreation location in Banguluru" src="https://www.google.com/maps?q=bangalore%20india&output=embed" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-white border-t border-gray-100 py-12">
+    <div class="mx-auto max-w-6x1 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-brand-DEFAULT text-white flex items-center justify-center font-semibold">RC</div>
+          <div>
+            <div class="font-semibold">RedesCreation</div>
+            <div class="text-sm text-gray-500">Freelance Photographer — Banguluru</div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-gray-600">Capturing moments with creativity and care. Contact for bookings and commercial enquiries.</p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Services</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="services.html">Weddings</a></li>
+          <li><a href="services.html">Portraits</a></li>
+          <li><a href="services.html">Events</a></li>
+          <li><a href="services.html">Commercial</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Resources</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Contact</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li>Phone: +91 96766 59153</li>
+          <li>Email: <a href="mailto:info@redescreation.in" class="hover:underline">info@redescreation.in</a></li>
+          <li>Website: <a href="https://www.redescreation.in" class="hover:underline">www.redescreation.in</a></li>
+        </ul>
+
+        <div class="mt-4 flex gap-3">
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Instagram"><i data-feather="instagram"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Facebook"><i data-feather="facebook"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t pt-6 text-center text-sm text-gray-500">
+      © <span id="year"></span> RedesCreation — All rights reserved.
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Initialize feather icons
+    feather.replace();
+
+    // Simple fade-in on scroll for elements with class fade-in-up / slide-left
+    (function() {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      document.querySelectorAll('.fade-in-up, .slide-left').forEach(el => io.observe(el));
+    })();
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(0)';
+      mobileMenu.setAttribute('aria-hidden','false');
+    });
+    mobileClose.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(100%)';
+      mobileMenu.setAttribute('aria-hidden','true');
+    });
+
+    // Search toggle (desktop)
+    const searchToggle = document.getElementById('searchToggle');
+    searchToggle && searchToggle.addEventListener('click', () => {
+      // simple prompt-based search for prototype
+      const q = prompt('Search site:');
+      if (q) alert('Search prototype: "' + q + '" — in a live site this would run real queries.');
+    });
+
+    // Portfolio filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.portfolio-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('bg-brand-DEFAULT','text-white'));
+        btn.classList.add('bg-brand-DEFAULT','text-white');
+
+        const filter = btn.getAttribute('data-filter');
+        items.forEach(it => {
+          if (filter === 'all' || it.dataset.category === filter) {
+            it.style.display = ''; // show
+          } else {
+            it.style.display = 'none'; // hide
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbTitle = document.getElementById('lb-title');
+    const lbDesc = document.getElementById('lb-desc');
+    const lbClose = document.getElementById('lb-close');
+
+    document.querySelectorAll('.portfolio-item img').forEach(img => {
+      img.addEventListener('click', (e) => {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt || '';
+        lbTitle.textContent = img.dataset.title || 'Project';
+        lbDesc.textContent = img.dataset.desc || '';
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lbClose.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.style.display = 'none';
+    });
+
+    // Testimonials carousel
+    const track = document.getElementById('carouselTrack');
+    const prevSlide = document.getElementById('prevSlide');
+    const nextSlide = document.getElementById('nextSlide');
+    let idx = 0;
+    function updateCarousel() {
+      const width = 344; // min width of card + gap approximated
+      track.style.transform = `translateX(${-idx * (width)}px)`;
+    }
+    prevSlide.addEventListener('click', () => {
+      idx = Math.max(0, idx - 1);
+      updateCarousel();
+    });
+    nextSlide.addEventListener('click', () => {
+      idx = Math.min(track.children.length - 1, idx + 1);
+      updateCarousel();
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        const answer = btn.nextElementSibling;
+        if (answer) {
+          if (expanded) {
+            answer.classList.add('hidden');
+          } else {
+            answer.classList.remove('hidden');
+          }
+        }
+      });
+    });
+
+    // Contact form prototype handling
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Basic client validation done by HTML 'required'
+      document.getElementById('contactStatus').classList.remove('hidden');
+      contactForm.reset();
+      setTimeout(() => document.getElementById('contactStatus').classList.add('hidden'), 4000);
+    });
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Accessibility: close mobile menu on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        mobileMenu.style.transform = 'translateX(100%)';
+        lightbox.style.display = 'none';
+      }
+    });
+
+    // Simple preloader fade-in for hero text to give polished feel
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.fade-in-up').forEach(el => el.classList.add('visible'));
+    });
+
+    // Ensure focus outline when tabbing (improves a11y)
+    (function() {
+      function handleFirstTab(e) {
+        if (e.key === 'Tab') {
+          document.body.classList.add('show-focus-outlines');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+
+  <style>
+    /* Extra: show focus outlines only when keyboard-user */
+    .show-focus-outlines :focus { outline: 3px solid rgba(200,140,110,0.35); outline-offset: 3px; }
+  </style>
+</body>
+</html>

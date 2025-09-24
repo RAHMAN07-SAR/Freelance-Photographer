@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RedesCreation — Freelance Photographer in Banguluru</title>
+  <meta name="description" content="RedesCreation — Freelance Photographer based in Banguluru. Professional wedding, portrait, event and commercial photography. Capturing moments with creativity and care." />
+  <meta name="author" content="RedesCreation" />
+  <link rel="canonical" href="https://www.redescreation.in" />
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — VisionFrames Photography (Bengaluru)</title>
+  <meta name="description" content="Portfolio — VisionFrames Photography. Filterable gallery, case studies, lightbox and high-performance animations for desktop & mobile." />
+  <meta name="author" content="VisionFrames" /> -->
+  <!-- Tailwind CDN -->
+  <script>
+    // Custom Tailwind config: add max-w-6x1 and brand colors
+    tailwind = {
+      config: { 
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: '#F6EDE9',
+                DEFAULT: '#C88C6A',
+                dark: '#8F5A3F'
+              },
+            },
+            fontFamily: {
+              heading: ['Georgia', 'Times New Roman', 'serif'],
+              body: ['Inter', 'system-ui', 'sans-serif']
+            },
+            spacing: {
+              '18': '4.5rem',
+              '22': '5.5rem'
+            },
+            maxWidth: {
+              '6x1': '1200px' /* user requested 'max-w-6x1' */
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons (Heroicons CDN) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- GSAP (animations) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
+
+  <style>
+    :root {
+      --brand: #dd6f4a;
+      --brand-dark: #a94a2e;
+      --muted: #6b7280;
+    }
+    html,body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #0f172a;
+      background: linear-gradient(180deg,#fff 0%, #fffbf8 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+    h1,h2,h3,h4 { font-family: "Playfair Display", serif; }
+
+    /* Hero adjustments */
+    .hero-image { object-fit: cover; object-position: center; filter: saturate(0.95) contrast(0.95); }
+
+    /* portfolio cards */
+    .portfolio-card { perspective: 1200px; will-change: transform; transition: transform .35s cubic-bezier(.2,.9,.2,1), box-shadow .35s; }
+    .portfolio-card:hover { transform: translateY(-8px) rotateX(1deg); box-shadow: 0 30px 50px rgba(2,6,23,.08); }
+
+    /* overlay label */
+    .card-overlay { transition: opacity .28s ease, transform .28s ease; opacity: 0; transform: translateY(6px); pointer-events: none; }
+    .portfolio-card:hover .card-overlay { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* lightbox */
+    .lb { position: fixed; inset: 0; display:flex; align-items:center; justify-content:center; z-index:80; background: rgba(2,6,23,0.8); opacity:0; visibility:hidden; transition:opacity .2s ease, visibility .2s; }
+    .lb.show { opacity:1; visibility:visible; }
+    .lb .panel { width: 92%; max-width: 1100px; height: 86vh; background: #fff; border-radius: 14px; display:grid; grid-template-columns: 1fr 360px; overflow:hidden; }
+    .lb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .lb .meta { padding: 22px; overflow:auto; }
+
+    /* mobile-friendly masonry fallback */
+    .masonry { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.9rem; }
+    @media(min-width:768px){ .masonry { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    @media(min-width:1200px){ .masonry { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+
+    /* focus ring for accessibility */
+    :focus { outline: 3px solid rgba(221,111,74,0.12); outline-offset: 3px; }
+
+    /* subtle flicker prevention for images */
+    img { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+
+    /* helper utility for hidden but accessible */
+    .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-40 bg-white backdrop-blur border-b border-gray-100"></header>
+    <div class="mx-auto px-6 max-w-6x1 flex items-center justify-between h-20">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-3" aria-label="RedesCreation home">
+          <!-- Logo: simple text + mark -->
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold shadow">
+            RC
+          </div>
+          <div class="leading-tight">
+            <span class="block text-sm font-medium">RedesCreation</span>
+            <span class="block text-xs text-gray-500">Freelance Photographer</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+        <a href="index.html" class="text-sm hover:text-brand.DEFAULT">Home</a>
+        <a href="services.html" class="text-sm hover:text-brand.DEFAULT">Services</a>
+        <a href="portfolio.html" class="text-sm hover:text-brand.DEFAULT">Portfolio</a>
+        <a href="about.html".html" class="text-sm hover:text-brand.DEFAULT">About</a>
+        <a href="blog.html" class="text-sm hover:text-brand.DEFAULT">Blog</a>
+        <a href="contact.html" class="text-sm hover:text-brand.DEFAULT">Contact</a>
+        <button id="searchToggle" class="ml-6 text-sm px-3 py-2 rounded hover:bg-gray-50" aria-label="Open search">
+          <i data-feather="search" class="inline-block" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="contact.html" class="text-sm px-4 py-2 border border-brand-DEFAULT rounded text-brand-DEFAULT hover:bg-brand-DEFAULT hover:text-white transition">Book Now</a>
+      </div>
+
+      <!-- Mobile controls -->
+      <div class="md:hidden flex items-center gap-3">
+        <button id="mobileSearchBtn" aria-label="Search" class="p-2">
+          <i data-feather="search"></i>
+        </button>
+        <button id="hamburger" aria-label="Open menu" class="p-2">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile slide-out menu -->
+    <div id="mobileMenu" class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform translate-x-full transition-transform z-50" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="p-6 flex items-center justify-between border-b">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand-DEFAULT flex items-center justify-center text-white font-semibold">RC</div>
+          <div>
+            <div class="text-sm font-medium">RedesCreation</div>
+            <div class="text-xs text-gray-500">Photographer — Banguluru</div>
+          </div>
+        </div>
+        <button id="mobileClose" aria-label="Close menu" class="p-2">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4">  
+        <a href="index.html" class="block text-lg">Home</a>
+        <a href="services.html" class="block text-lg">Services</a>
+        <a href="portfolio.html" class="block text-lg">Portfolio</a>
+        <a href="ab'.html" class="block text-lg">About</a>
+        <a href="blog.html" class="block text-lg">Blog</a>
+        <a href="contact.html" class="block text-lg">Contact</a>
+
+        <div class="pt-4 border-t">
+          <form role="search" aria-label="Mobile search">
+            <input class="w-full p-2 border rounded" placeholder="Search..." />
+          </form>
+          <div class="flex gap-3 mt-4">
+            <a href="#" aria-label="Instagram" class="p-2 rounded hover:bg-gray-50"><i data-feather="instagram"></i></a>
+            <a href="#" aria-label="Facebook" class="p-2 rounded hover:bg-gray-50"><i data-feather="facebook"></i></a>
+            <a href="#" aria-label="Twitter" class="p-2 rounded hover:bg-gray-50"><i data-feather="twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+ 
+  <!-- HERO -->
+  <section class="relative h-[60vh]">
+    <picture class="absolute inset-0 block h-full w-full">
+      <source media="(min-width:1200px)" srcset="https://images.unsplash.com/photo-1500048993953-d23a436266cf?q=80&w=2000&auto=format&fit=crop" />
+      <img class="w-full h-full hero-image" src="https://images.unsplash.com/photo-1500048993953-d23a436266cf?q=80&w=1400&auto=format&fit=crop" alt="Wedding couple in golden light">
+    </picture>
+    <div class="absolute inset-0 bg-black/45"></div>
+    <div class="relative max-w-6x1 mx-auto h-full px-6 flex items-center">
+      <div class="text-white max-w-2xl">
+        <div class="inline-block bg-white/10 backdrop-blur px-4 py-1 rounded-full text-xs tracking-widest mb-4">Portfolio</div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">Selected Works — Weddings, Portraits & Commercial</h1>
+        <p class="mt-4 text-lg text-white/90">Handpicked stories — cinematic frames, honest moments and brand campaigns. Tap any image to explore the project details.</p>
+
+        <!-- quick filters (hero) -->
+        <div class="mt-6 flex gap-3 flex-wrap">
+          <button class="hero-filter px-3 py-2 bg-white/10 border border-white/10 rounded text-sm">Featured</button>
+          <button class="hero-filter px-3 py-2 bg-white/10 border border-white/10 rounded text-sm">Latest</button>
+          <button class="hero-filter px-3 py-2 bg-white/10 border border-white/10 rounded text-sm">Editorial</button>
+        </div>
+      </div>
+
+      <div class="ml-auto hidden lg:block w-80">
+        <!-- mosaic preview for larger screens -->
+        <div class="grid grid-cols-2 gap-3">
+          <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=600&auto=format&fit=crop" alt="mosaic1" class="rounded-xl h-36 w-full object-cover shadow-lg" />
+          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=600&auto=format&fit=crop" alt="mosaic2" class="rounded-xl h-36 w-full object-cover shadow-xl" />
+          <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=600&auto=format&fit=crop" alt="mosaic3" class="rounded-xl h-36 w-full object-cover shadow-md" />
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop" alt="mosaic4" class="rounded-xl h-36 w-full object-cover shadow-lg" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="bg-white py-6 border-b">
+    <div class="max-w-6x1 mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3 flex-wrap">
+        <div class="text-sm text-gray-600">Filter:</div>
+        <div class="flex gap-2 flex-wrap" role="tablist" aria-label="Portfolio categories">
+          <button class="filter-btn px-4 py-2 rounded-md bg-brand text-white text-sm" data-filter="*">All</button>
+          <button class="filter-btn px-4 py-2 rounded-md bg-white border text-sm" data-filter="weddings">Weddings</button>
+          <button class="filter-btn px-4 py-2 rounded-md bg-white border text-sm" data-filter="portraits">Portraits</button>
+          <button class="filter-btn px-4 py-2 rounded-md bg-white border text-sm" data-filter="commercial">Commercial</button>
+          <button class="filter-btn px-4 py-2 rounded-md bg-white border text-sm" data-filter="events">Events</button>
+          <button class="filter-btn px-4 py-2 rounded-md bg-white border text-sm" data-filter="editorial">Editorial</button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="text-sm text-gray-600 hidden md:block">View</div>
+        <div class="flex gap-2">
+          <button id="viewGrid" class="px-3 py-2 border rounded text-sm" aria-pressed="true">Grid</button>
+          <button id="viewMasonry" class="px-3 py-2 border rounded text-sm">Masonry</button>
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="sort" class="text-sm text-gray-600 hidden md:block">Sort</label>
+          <select id="sort" class="border px-3 py-2 rounded text-sm">
+            <option value="latest">Latest</option>
+            <option value="popular">Most popular</option>
+            <option value="oldest">Oldest</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <main class="py-12">
+    <div class="max-w-6x1 mx-auto px-6">
+      <div id="gallery" class="masonry">
+        <!-- We'll include many tiles, varied categories, for responsive testing.
+             Each tile is intentionally explicit so the file is long and contains many examples.
+             Images are sourced from unsplash placeholders. Replace with your own assets in production. -->
+
+        <!-- Tile 1 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile: Wedding — Golden Hour">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop" alt="Wedding golden hour" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Anna & Rahul</div>
+              <div class="text-xs text-white/80">Golden hour wedding — 2024</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 2 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portraits" tabindex="0" aria-label="Tile: Portrait — Soft Light">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1400&auto=format&fit=crop" alt="Portrait soft light" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Studio Portrait</div>
+              <div class="text-xs text-white/80">Editorial headshot</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 3 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile: Commercial — Product">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop" alt="Product shoot" class="w-full h-[260px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Zenora Campaign</div>
+              <div class="text-xs text-white/80">Lifestyle product</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 4 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile: Event — Concert">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop" alt="Concert event" class="w-full h-[380px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Live Concert</div>
+              <div class="text-xs text-white/80">Night event</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 5 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile: Editorial — Fashion">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400&auto=format&fit=crop" alt="Editorial fashion" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Fashion Editorial</div>
+              <div class="text-xs text-white/80">Lookbook story</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 6 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile: Candid wedding">
+          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1400&auto=format&fit=crop" alt="Candid wedding" class="w-full h-[340px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Candid Moments</div>
+              <div class="text-xs text-white/80">Wedding highlights</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 7 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portraits" tabindex="0" aria-label="Tile: Couple portrait">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1400&auto=format&fit=crop" alt="Couple portrait" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Couple Portrait</div>
+              <div class="text-xs text-white/80">Outdoor session</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 8 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile: E-commerce product">
+          <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1400&auto=format&fit=crop" alt="E-commerce product" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Product Set</div>
+              <div class="text-xs text-white/80">E-commerce</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 9 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile: Conference coverage">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1400&auto=format&fit=crop" alt="Conference" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Corporate Conference</div>
+              <div class="text-xs text-white/80">Day event</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 10 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile: Model editorial">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop" alt="Model editorial" class="w-full h-[340px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Model Series</div>
+              <div class="text-xs text-white/80">Editorial</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 11 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile: Bride portrait">
+          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1" alt="Bride portrait" class="w-full h-[420px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Bride Portrait</div>
+              <div class="text-xs text-white/80">Fine Art</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 12 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portraits" tabindex="0" aria-label="Tile: Minimal portrait">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1400&auto=format&fit=crop" alt="Minimal portrait" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Minimal Portrait</div>
+              <div class="text-xs text-white/80">Studio minimal</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 13 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile: Lifestyle brand">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop" alt="Lifestyle brand" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Brand Shoot</div>
+              <div class="text-xs text-white/80">Lifestyle</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 14 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile: Festival coverage">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop" alt="Festival coverage" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Festival Coverage</div>
+              <div class="text-xs text-white/80">Night</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 15 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile: Cinematic portrait">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop" alt="Cinematic portrait" class="w-full h-[340px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Cinematic Portrait</div>
+              <div class="text-xs text-white/80">Storytelling</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 16 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile: Vow exchange">
+          <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1400&auto=format&fit=crop" alt="Vow exchange" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Vow Exchange</div>
+              <div class="text-xs text-white/80">Moment</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 17 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portraits" tabindex="0" aria-label="Tile: B&W portrait">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1400&auto=format&fit=crop" alt="Black and white portrait" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Black & White</div>
+              <div class="text-xs text-white/80">Monochrome portrait</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 18 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile: Jewelry campaign">
+          <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1400&auto=format&fit=crop" alt="Jewelry campaign" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Jewelry Campaign</div>
+              <div class="text-xs text-white/80">Closeup product</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 19 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile: Reception highlights">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop" alt="Reception highlights" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Reception Highlights</div>
+              <div class="text-xs text-white/80">Evening</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 20 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile: Mood study">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400&auto=format&fit=crop" alt="Mood study" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Mood Study</div>
+              <div class="text-xs text-white/80">Editorial</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Repeat tiles to ensure enough lines and content for demonstration -->
+        <!-- Tile 21 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile 21">
+          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1400&auto=format&fit=crop" alt="wedding-21" class="w-full h-[340px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Wedding — 21</div>
+              <div class="text-xs text-white/80">Highlights</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 22 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portrait" tabindex="0" aria-label="Tile 22">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1400&auto=format&fit=crop" alt="portrait-22" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Portrait — 22</div>
+              <div class="text-xs text-white/80">Studio</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 23 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile 23">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop" alt="commercial-23" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Commercial — 23</div>
+              <div class="text-xs text-white/80">Campaign</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 24 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile 24">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop" alt="events-24" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Event — 24</div>
+              <div class="text-xs text-white/80">Live</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 25 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile 25">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400&auto=format&fit=crop" alt="editorial-25" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Editorial — 25</div>
+              <div class="text-xs text-white/80">Fashion</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 26 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile 26">
+          <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1400&auto=format&fit=crop" alt="wedding-26" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Wedding — 26</div>
+              <div class="text-xs text-white/80">Ceremony</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 27 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portrait" tabindex="0" aria-label="Tile 27">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1400&auto=format&fit=crop" alt="portrait-27" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Portrait — 27</div>
+              <div class="text-xs text-white/80">Natural Light</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 28 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile 28">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop" alt="commercial-28" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Commercial — 28</div>
+              <div class="text-xs text-white/80">Product</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 29 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile 29">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1400&auto=format&fit=crop" alt="events-29" class="w-full h-[380px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Event — 29</div>
+              <div class="text-xs text-white/80">Ceremony</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 30 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile 30">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop" alt="editorial-30" class="w-full h-[340px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Editorial — 30</div>
+              <div class="text-xs text-white/80">Lookbook</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Additional tiles until a large file size (demonstration) -->
+        <!-- Tile 31 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile 31">
+          <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1400&auto=format&fit=crop" alt="wedding-31" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Wedding — 31</div>
+              <div class="text-xs text-white/80">Highlights</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 32 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portrait" tabindex="0" aria-label="Tile 32">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1400&auto=format&fit=crop" alt="portrait-32" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Portrait — 32</div>
+              <div class="text-xs text-white/80">Character Study</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 33 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile 33">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop" alt="commercial-33" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Commercial — 33</div>
+              <div class="text-xs text-white/80">Product</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 34 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile 34">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop" alt="events-34" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Event — 34</div>
+              <div class="text-xs text-white/80">Concert</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 35 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile 35">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400&auto=format&fit=crop" alt="editorial-35" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Editorial — 35</div>
+              <div class="text-xs text-white/80">Visual Story</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 36 (repeat pattern) -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="weddings" tabindex="0" aria-label="Tile 36">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1400&auto=format&fit=crop" alt="wedding-36" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Wedding — 36</div>
+              <div class="text-xs text-white/80">Documentary</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 37 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="portrait" tabindex="0" aria-label="Tile 37">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1400&auto=format&fit=crop" alt="portrait-37" class="w-full h-[320px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Portrait — 37</div>
+              <div class="text-xs text-white/80">Soft Light</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 38 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="commercial" tabindex="0" aria-label="Tile 38">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1400&auto=format&fit=crop" alt="commercial-38" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Commercial — 38</div>
+              <div class="text-xs text-white/80">Product</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 39 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="events" tabindex="0" aria-label="Tile 39">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1400&auto=format&fit=crop" alt="events-39" class="w-full h-[360px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Event — 39</div>
+              <div class="text-xs text-white/80">Live</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- Tile 40 -->
+        <figure class="portfolio-card rounded-xl overflow-hidden relative" data-cats="editorial" tabindex="0" aria-label="Tile 40">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400&auto=format&fit=crop" alt="editorial-40" class="w-full h-[300px] object-cover" />
+          <figcaption class="absolute left-4 bottom-4 card-overlay text-white">
+            <div class="bg-black/40 px-3 py-2 rounded-md">
+              <div class="text-sm font-semibold">Editorial — 40</div>
+              <div class="text-xs text-white/80">Campaign</div>
+            </div>
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <!-- load controls -->
+      <div class="mt-8 flex items-center justify-center gap-4">
+        <button id="loadMore" class="px-6 py-3 bg-brand text-white rounded-full shadow hover:bg-brand-dark">Load more</button>
+        <button id="backToTop" class="px-4 py-2 border rounded hidden">Back to top</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lb" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="panel" role="document">
+      <div id="lbImage" class="w-full h-full bg-black flex items-center justify-center">
+        <!-- image injected here -->
+      </div>
+      <aside class="meta">
+        <div class="flex items-start justify-between">
+          <div>
+            <h3 id="lbTitle" class="text-xl font-semibold">Project Title</h3>
+            <div id="lbSub" class="text-sm text-gray-500 mt-1">Subtitle / location</div>
+          </div>
+          <button id="lbClose" aria-label="Close preview" class="text-gray-600">✕</button>
+        </div>
+
+        <p id="lbDesc" class="mt-4 text-gray-700">Detailed project description will go here. Explain client, brief, techniques, and any notable creative choices.</p>
+
+        <div class="mt-6">
+          <h4 class="font-semibold mb-2">Project details</h4>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li><strong>Type:</strong> <span id="lbType">—</span></li>
+            <li><strong>Date:</strong> <span id="lbDate">—</span></li>
+            <li><strong>Services:</strong> Coverage, editing, album</li>
+            <li><strong>Location:</strong> Bengaluru</li>
+          </ul>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button id="prev" class="px-3 py-2 border rounded">← Prev</button>
+          <button id="next" class="px-3 py-2 border rounded">Next →</button>
+          <a id="inquire" href="contact.html" class="ml-auto px-4 py-2 bg-brand text-white rounded">Inquire</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-white border-t border-gray-100 py-12">
+    <div class="mx-auto max-w-6x1 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-brand-DEFAULT text-white flex items-center justify-center font-semibold">RC</div>
+          <div>
+            <div class="font-semibold">RedesCreation</div>
+            <div class="text-sm text-gray-500">Freelance Photographer — Banguluru</div>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-gray-600">Capturing moments with creativity and care. Contact for bookings and commercial enquiries.</p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Services</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="services.html">Weddings</a></li>
+          <li><a href="services.html">Portraits</a></li>
+          <li><a href="services.html">Events</a></li>
+          <li><a href="services.html">Commercial</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Resources</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold">Contact</h4>
+        <ul class="mt-4 text-sm space-y-2 text-gray-600">
+          <li>Phone: +91 96766 59153</li>
+          <li>Email: <a href="mailto:info@redescreation.in" class="hover:underline">info@redescreation.in</a></li>
+          <li>Website: <a href="https://www.redescreation.in" class="hover:underline">www.redescreation.in</a></li>
+        </ul>
+
+        <div class="mt-4 flex gap-3">
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Instagram"><i data-feather="instagram"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="Facebook"><i data-feather="facebook"></i></a>
+          <a href="#" class="p-2 rounded hover:bg-gray-100" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t pt-6 text-center text-sm text-gray-500">
+      © <span id="year"></span> RedesCreation — All rights reserved.
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+// Initialize feather icons
+    feather.replace();
+
+    // Simple fade-in on scroll for elements with class fade-in-up / slide-left
+    (function() {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      document.querySelectorAll('.fade-in-up, .slide-left').forEach(el => io.observe(el));
+    })();
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(0)';
+      mobileMenu.setAttribute('aria-hidden','false');
+    });
+    mobileClose.addEventListener('click', () => {
+      mobileMenu.style.transform = 'translateX(100%)';
+      mobileMenu.setAttribute('aria-hidden','true');
+    });
+
+    // Search toggle (desktop)
+    const searchToggle = document.getElementById('searchToggle');
+    searchToggle && searchToggle.addEventListener('click', () => {
+      // simple prompt-based search for prototype
+      const q = prompt('Search site:');
+      if (q) alert('Search prototype: "' + q + '" — in a live site this would run real queries.');
+    });
+
+    // Animate hero filters and entry
+    gsap.from('.hero-filter', {opacity:0, y:8, stagger:0.06, duration:0.6, ease:'power3.out'});
+
+    // Reveal tiles as they come into view
+    qsa('#gallery .portfolio-card').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 30,
+        scale: 0.99,
+        duration: 0.9,
+        delay: i * 0.02,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 92%' }
+      });
+    });
+
+    // Filter logic with Flip animation for smooth reflow
+    const filterBtns = qsa('.filter-btn');
+    const gallery = qs('#gallery');
+    let tiles = qsa('#gallery .portfolio-card');
+
+    function applyFilter(filter) {
+      // capture state
+      const state = Flip.getState(tiles);
+      // show/hide
+      tiles.forEach(tile => {
+        const cats = (tile.dataset.cats || '').split(',').map(s => s.trim());
+        const match = filter === '*' || cats.includes(filter);
+        tile.style.display = match ? '' : 'none';
+      });
+      // animate layout change
+      Flip.from(state, {
+        duration: 0.6,
+        ease: 'power2.inOut',
+        absolute: true,
+        stagger: 0.02
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        filterBtns.forEach(b => b.classList.remove('bg-brand','text-white'));
+        btn.classList.add('bg-brand','text-white');
+        const f = btn.dataset.filter === '*' ? '*' : btn.dataset.filter;
+        applyFilter(f);
+      });
+    });
+
+    // Default apply all
+    applyFilter('*');
+
+    // View toggles (Grid / Masonry)
+    const viewGrid = qs('#viewGrid');
+    const viewMasonry = qs('#viewMasonry');
+    viewGrid && viewGrid.addEventListener('click', () => {
+      gallery.classList.remove('masonry-force');
+      gsap.fromTo('#gallery .portfolio-card', {opacity:0, y:20}, {opacity:1, y:0, duration:0.5, stagger:0.02});
+    });
+    viewMasonry && viewMasonry.addEventListener('click', () => {
+      gallery.classList.remove('masonry-force');
+      gsap.fromTo('#gallery .portfolio-card', {opacity:0, y:20}, {opacity:1, y:0, duration:0.5, stagger:0.02});
+    });
+
+    // Sort (simple client-side demo)
+    qs('#sort')?.addEventListener('change', (e) => {
+      const v = e.target.value;
+      if (v === 'latest') {
+        // do nothing in demo (would query server / reorder)
+        alert('Sorting by Latest — connect to backend for real-data sorting.');
+      } else if (v === 'popular') {
+        alert('Sorting by Most Popular — demo only.');
+      } else {
+        alert('Sorting demo — not yet connected.');
+      }
+    });
+
+    // Lightbox
+    const lightbox = qs('#lightbox');
+    const lbImage = qs('#lbImage');
+    const lbTitle = qs('#lbTitle');
+    const lbSub = qs('#lbSub');
+    const lbDesc = qs('#lbDesc');
+    const lbType = qs('#lbType');
+    const lbDate = qs('#lbDate');
+    const lbClose = qs('#lbClose');
+    const prevBtn = qs('#prev');
+    const nextBtn = qs('#next');
+
+    function getVisibleTiles() {
+      return qsa('#gallery .portfolio-card').filter(t => t.style.display !== 'none');
+    }
+
+    function openLightbox(tile) {
+      const img = tile.querySelector('img');
+      const title = tile.querySelector('.card-overlay .text-sm') ? tile.querySelector('.card-overlay .text-sm').textContent.trim() : (img.alt || 'Project');
+      const subtitle = tile.querySelector('.card-overlay .text-xs') ? tile.querySelector('.card-overlay .text-xs').textContent.trim() : '';
+      const type = (tile.dataset.cats || '').split(',')[0] || 'Project';
+      // inject image node to keep sizing correct
+      lbImage.innerHTML = '';
+      const node = document.createElement('img');
+      node.src = img.src;
+      node.alt = img.alt || title;
+      node.style.maxWidth = '100%';
+      node.style.maxHeight = '100%';
+      node.style.objectFit = 'cover';
+      lbImage.appendChild(node);
+
+      lbTitle.textContent = title;
+      lbSub.textContent = subtitle;
+      lbDesc.textContent = `This is a demo description for ${title}. In a full site this would contain the project brief, client, equipment, credits and notes about the shoot.`;
+      lbType.textContent = type;
+      lbDate.textContent = '2024';
+
+      // show
+      lightbox.classList.add('show');
+      lightbox.setAttribute('aria-hidden', 'false');
+      // panel animation
+      gsap.fromTo('.lb .panel', {scale:0.98, y:20}, {scale:1, y:0, duration:0.45, ease:'power3.out'});
+    }
+
+    function closeLightbox() {
+      gsap.to('.lb .panel', {scale:0.98, y:20, duration:0.28, ease:'power3.in'});
+      gsap.to(lightbox, {opacity:0, duration:0.28, onComplete: () => {
+        lightbox.classList.remove('show');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lbImage.innerHTML = '';
+      }});
+    }
+
+    // Wire tiles to open LB
+    qsa('#gallery .portfolio-card').forEach((tile, idx) => {
+      tile.addEventListener('click', () => openLightbox(tile));
+      tile.addEventListener('keydown', (e) => { if (e.key === 'Enter') openLightbox(tile); });
+      // subtle parallax mousemove
+      tile.addEventListener('mousemove', (ev) => {
+        const img = tile.querySelector('img');
+        const rect = tile.getBoundingClientRect();
+        const px = (ev.clientX - rect.left) / rect.width - 0.5;
+        const py = (ev.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(img, {x: px * 12, y: py * 8, scale: 1.02, duration: 0.6, ease: 'power3.out'});
+      });
+      tile.addEventListener('mouseleave', () => {
+        const img = tile.querySelector('img');
+        gsap.to(img, {x:0, y:0, scale:1, duration:0.6, ease: 'power3.out'});
+      });
+    });
+
+    // Prev/Next navigation inside lightbox
+    function navigate(direction) {
+      const visible = getVisibleTiles();
+      if (!visible.length) return;
+      const currentImg = lbImage.querySelector('img')?.src || '';
+      let idx = visible.findIndex(t => t.querySelector('img')?.src === currentImg);
+      if (idx === -1) idx = 0;
+      if (direction === 'next') idx = (idx + 1) % visible.length;
+      else idx = (idx - 1 + visible.length) % visible.length;
+      openLightbox(visible[idx]);
+    }
+
+    prevBtn && prevBtn.addEventListener('click', () => navigate('prev'));
+    nextBtn && nextBtn.addEventListener('click', () => navigate('next'));
+    lbClose && lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+    // keyboard support
+    window.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('show')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') navigate('next');
+      if (e.key === 'ArrowLeft') navigate('prev');
+    });
+
+    // swipe support for mobile
+    let touchStartX = 0;
+    lbImage.addEventListener('touchstart', (e) => touchStartX = e.changedTouches[0].screenX);
+    lbImage.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX - touchStartX > 50) navigate('prev');
+      if (touchStartX - touchEndX > 50) navigate('next');
+    });
+
+    // Load more behavior (demo duplicates first N tiles)
+    const loadMoreBtn = qs('#loadMore');
+    loadMoreBtn.addEventListener('click', () => {
+      const currentTiles = qsa('#gallery .portfolio-card');
+      const fragment = document.createDocumentFragment();
+      // duplicate first 8 tiles and append with small random query to avoid identical cache
+      currentTiles.slice(0,8).forEach((t, i) => {
+        const clone = t.cloneNode(true);
+        const img = clone.querySelector('img');
+        img.src = img.src + '&sig=' + Math.floor(Math.random()*10000);
+        fragment.appendChild(clone);
+      });
+      gallery.appendChild(fragment);
+      // update tiles reference and attach handlers to newly added tiles
+      tiles = qsa('#gallery .portfolio-card');
+      // attach lightbox and mousemove handlers to new tiles
+      const newTiles = Array.from(gallery.querySelectorAll('.portfolio-card')).slice(-8);
+      newTiles.forEach(tile => {
+        tile.addEventListener('click', () => openLightbox(tile));
+        tile.addEventListener('keydown', (e) => { if (e.key === 'Enter') openLightbox(tile); });
+        tile.addEventListener('mousemove', (ev) => {
+          const img = tile.querySelector('img');
+          const rect = tile.getBoundingClientRect();
+          const px = (ev.clientX - rect.left) / rect.width - 0.5;
+          const py = (ev.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(img, {x: px * 12, y: py * 8, scale: 1.02, duration: 0.6, ease: 'power3.out'});
+        });
+        tile.addEventListener('mouseleave', () => {
+          const img = tile.querySelector('img');
+          gsap.to(img, {x:0, y:0, scale:1, duration:0.6, ease: 'power3.out'});
+        });
+      });
+      // animate new tiles in
+      gsap.fromTo(newTiles, {opacity:0, y:30}, {opacity:1, y:0, duration:0.6, stagger:0.05});
+    });
+
+    // Back to top (show after scroll)
+    const backToTop = qs('#backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 800) backToTop.classList.remove('hidden');
+      else backToTop.classList.add('hidden');
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Accessibility: ensure images have alt text fallback
+    qsa('img').forEach(img => { if (!img.alt || img.alt.trim()==='') img.alt = 'VisionFrames image'; });
+
+    // Small debounce utility
+    function debounce(fn, wait=80) {
+      let t;
+      return function(...args) {
+        clearTimeout(t);
+        t = setTimeout(()=>fn.apply(this,args), wait);
+      };
+    } 
+
+    // Window resize: re-run card reveal animations gently
+    window.addEventListener('resize', debounce(() => {
+      gsap.fromTo('#gallery .portfolio-card', {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, stagger:0.02});
+    }, 150));
+
+    // Tiny micro-interactions: hover scale on filter buttons
+    qsa('.filter-btn').forEach(btn => {
+      btn.addEventListener('mouseenter', () => gsap.to(btn, {scale:1.03, duration:0.12}));
+      btn.addEventListener('mouseleave', () => gsap.to(btn, {scale:1, duration:0.12}));
+    });
+
+    // Ensure initial view (trigger small gsap animation)
+    gsap.from('.portfolio-card', {opacity:0, y:20, duration:0.8, stagger:0.02});
+
+    // End of script: page now interactive on mobile & desktop with high-performance animations
+  </script>
+
+</body>
+</html>
